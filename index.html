@@ -1,0 +1,3694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Project ER — Empower. Rise.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet"/>
+<style>
+/* ─────────────────────────────────────────────
+   RESET & BASE
+───────────────────────────────────────────── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:#0a0a0f;
+  color:#f0f0f5;
+  min-height:100vh;
+  overflow-x:hidden;
+  cursor:default;
+}
+:root{
+  --black:#0a0a0f;
+  --deep:#111118;
+  --card:#16161f;
+  --card2:#1c1c28;
+  --border:rgba(255,255,255,0.07);
+  --border2:rgba(255,255,255,0.12);
+  --orange:#f97316;
+  --orange-dim:rgba(249,115,22,0.15);
+  --orange-glow:rgba(249,115,22,0.08);
+  --purple:#a855f7;
+  --purple-dim:rgba(168,85,247,0.15);
+  --cyan:#22d3ee;
+  --cyan-dim:rgba(34,211,238,0.12);
+  --green:#4ade80;
+  --green-dim:rgba(74,222,128,0.12);
+  --muted:rgba(240,240,245,0.5);
+  --muted2:rgba(240,240,245,0.25);
+  --muted3:rgba(240,240,245,0.1);
+  --text:#f0f0f5;
+  --radius:12px;
+  --radius-lg:18px;
+}
+a{color:inherit;text-decoration:none}
+button{font-family:'DM Sans',sans-serif;cursor:pointer;border:none;background:none}
+ul{list-style:none}
+img{display:block;max-width:100%}
+
+/* ─────────────────────────────────────────────
+   SCROLLBAR
+───────────────────────────────────────────── */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--black)}
+::-webkit-scrollbar-thumb{background:rgba(249,115,22,0.3);border-radius:3px}
+
+/* ─────────────────────────────────────────────
+   TYPOGRAPHY
+───────────────────────────────────────────── */
+.font-display{font-family:'Syne',sans-serif}
+.grad-text{
+  background:linear-gradient(90deg,var(--orange),var(--purple));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.grad-text-2{
+  background:linear-gradient(90deg,var(--cyan),var(--green));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+/* ─────────────────────────────────────────────
+   LAYOUT
+───────────────────────────────────────────── */
+.container{max-width:1200px;margin:0 auto;padding:0 32px}
+.section{padding:96px 0}
+.section-sm{padding:64px 0}
+
+/* ─────────────────────────────────────────────
+   NOISE TEXTURE OVERLAY
+───────────────────────────────────────────── */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;
+  z-index:0;
+  opacity:0.4;
+}
+
+/* ─────────────────────────────────────────────
+   NAV
+───────────────────────────────────────────── */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 40px;
+  background:rgba(10,10,15,0.85);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{
+  display:flex;align-items:center;gap:10px;
+  font-family:'Syne',sans-serif;font-weight:800;font-size:20px;
+  letter-spacing:-0.5px;
+}
+.nav-logo-mark{
+  width:34px;height:34px;
+  background:linear-gradient(135deg,var(--orange),var(--purple));
+  border-radius:9px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;
+  box-shadow:0 0 20px rgba(249,115,22,0.3);
+}
+.nav-links{
+  display:flex;align-items:center;gap:8px;
+}
+.nav-links a{
+  padding:7px 16px;
+  font-size:14px;color:var(--muted);
+  border-radius:8px;
+  transition:color 0.2s,background 0.2s;
+}
+.nav-links a:hover{color:var(--text);background:var(--muted3)}
+.nav-links a.active{color:var(--text)}
+.nav-cta{
+  background:var(--orange);
+  color:#fff;
+  padding:9px 22px;
+  border-radius:9px;
+  font-size:14px;font-weight:500;
+  transition:opacity 0.2s,transform 0.15s;
+  box-shadow:0 4px 20px rgba(249,115,22,0.3);
+}
+.nav-cta:hover{opacity:0.88;transform:translateY(-1px)}
+.nav-mobile-toggle{display:none;flex-direction:column;gap:5px;padding:8px;cursor:pointer}
+.nav-mobile-toggle span{width:22px;height:2px;background:var(--muted);border-radius:1px;transition:all 0.3s}
+
+/* ─────────────────────────────────────────────
+   HERO
+───────────────────────────────────────────── */
+.hero{
+  padding-top:140px;padding-bottom:80px;
+  position:relative;overflow:hidden;
+  text-align:center;
+}
+.hero-glow{
+  position:absolute;top:-200px;left:50%;transform:translateX(-50%);
+  width:900px;height:700px;
+  background:radial-gradient(ellipse at 50% 30%,rgba(249,115,22,0.1) 0%,rgba(168,85,247,0.06) 40%,transparent 70%);
+  pointer-events:none;
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse at 50% 50%,black 20%,transparent 75%);
+  pointer-events:none;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--orange);
+  border:1px solid rgba(249,115,22,0.25);
+  background:rgba(249,115,22,0.06);
+  padding:6px 16px;border-radius:100px;
+  margin-bottom:28px;
+}
+.hero-eyebrow-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--orange);
+  animation:pulse-dot 2s infinite;
+}
+@keyframes pulse-dot{
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:0.5;transform:scale(0.7)}
+}
+.hero-title{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(40px,6vw,76px);
+  font-weight:800;
+  line-height:1.02;
+  letter-spacing:-2.5px;
+  margin-bottom:24px;
+  position:relative;z-index:1;
+}
+.hero-sub{
+  font-size:clamp(16px,2vw,19px);
+  color:var(--muted);
+  max-width:560px;
+  margin:0 auto 40px;
+  line-height:1.7;
+  font-weight:300;
+}
+.hero-actions{
+  display:flex;align-items:center;justify-content:center;gap:14px;
+  flex-wrap:wrap;margin-bottom:72px;
+}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--orange);color:#fff;
+  padding:14px 30px;border-radius:11px;
+  font-size:15px;font-weight:500;
+  transition:transform 0.15s,opacity 0.2s,box-shadow 0.2s;
+  box-shadow:0 4px 24px rgba(249,115,22,0.35);
+}
+.btn-primary:hover{transform:translateY(-2px);opacity:0.9;box-shadow:0 8px 32px rgba(249,115,22,0.4)}
+.btn-primary:active{transform:translateY(0)}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:8px;
+  color:var(--text);
+  padding:14px 30px;border-radius:11px;
+  font-size:15px;font-weight:400;
+  border:1px solid var(--border2);
+  background:rgba(255,255,255,0.03);
+  transition:border-color 0.2s,background 0.2s,transform 0.15s;
+}
+.btn-ghost:hover{border-color:rgba(255,255,255,0.22);background:rgba(255,255,255,0.06);transform:translateY(-1px)}
+.btn-sm{padding:10px 20px;font-size:13px;border-radius:9px}
+
+/* ─────────────────────────────────────────────
+   STATS STRIP
+───────────────────────────────────────────── */
+.stats-strip{
+  display:flex;flex-wrap:wrap;
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+  background:var(--card);
+}
+.stat-item{
+  flex:1;min-width:160px;
+  padding:24px 28px;
+  border-right:1px solid var(--border);
+  text-align:center;
+  transition:background 0.2s;
+}
+.stat-item:last-child{border-right:none}
+.stat-item:hover{background:var(--card2)}
+.stat-num{
+  font-family:'Syne',sans-serif;font-size:32px;font-weight:800;
+  line-height:1;margin-bottom:6px;
+}
+.stat-num.o{color:var(--orange)}
+.stat-num.p{color:var(--purple)}
+.stat-num.c{color:var(--cyan)}
+.stat-num.g{color:var(--green)}
+.stat-label{font-size:12px;color:var(--muted);line-height:1.4}
+
+/* ─────────────────────────────────────────────
+   SECTION HEADER
+───────────────────────────────────────────── */
+.section-kicker{
+  font-size:12px;text-transform:uppercase;letter-spacing:0.12em;
+  font-weight:500;margin-bottom:12px;
+}
+.section-kicker.o{color:var(--orange)}
+.section-kicker.p{color:var(--purple)}
+.section-kicker.c{color:var(--cyan)}
+.section-kicker.g{color:var(--green)}
+.section-title{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(28px,4vw,44px);
+  font-weight:800;letter-spacing:-1.5px;
+  margin-bottom:12px;line-height:1.1;
+}
+.section-desc{
+  font-size:16px;color:var(--muted);
+  max-width:520px;line-height:1.65;font-weight:300;
+}
+
+/* ─────────────────────────────────────────────
+   PAGE SECTION IDS
+───────────────────────────────────────────── */
+.page-section{position:relative;z-index:1}
+
+/* ─────────────────────────────────────────────
+   FEATURES GRID
+───────────────────────────────────────────── */
+.features-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:16px;
+  margin-top:48px;
+}
+.feature-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  padding:28px;
+  transition:border-color 0.25s,transform 0.2s,background 0.2s;
+  position:relative;overflow:hidden;
+}
+.feature-card::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.08),transparent);
+}
+.feature-card:hover{
+  border-color:rgba(249,115,22,0.2);
+  transform:translateY(-3px);
+  background:var(--card2);
+}
+.feature-card.wide{grid-column:span 2}
+.feature-card-accent{
+  position:absolute;bottom:0;left:0;right:0;height:2px;
+}
+.feature-icon{
+  width:48px;height:48px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;margin-bottom:20px;
+}
+.feature-title{
+  font-family:'Syne',sans-serif;font-size:17px;font-weight:700;
+  margin-bottom:10px;letter-spacing:-0.3px;
+}
+.feature-desc{font-size:14px;color:var(--muted);line-height:1.65}
+.feature-tag{
+  display:inline-block;margin-top:16px;
+  font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;
+  padding:4px 12px;border-radius:100px;
+}
+.tag-o{background:rgba(249,115,22,0.12);color:var(--orange)}
+.tag-p{background:rgba(168,85,247,0.12);color:var(--purple)}
+.tag-c{background:rgba(34,211,238,0.12);color:var(--cyan)}
+.tag-g{background:rgba(74,222,128,0.12);color:var(--green)}
+
+/* ─────────────────────────────────────────────
+   AI DEMO SECTION
+───────────────────────────────────────────── */
+.ai-demo-layout{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:24px;margin-top:48px;align-items:start;
+}
+.ai-terminal{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+}
+.ai-terminal-bar{
+  padding:14px 20px;
+  background:rgba(255,255,255,0.03);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:8px;
+}
+.terminal-dot{width:10px;height:10px;border-radius:50%}
+.terminal-title{
+  font-size:12px;color:var(--muted);
+  margin:0 auto;letter-spacing:0.04em;
+}
+.ai-chat{padding:20px;display:flex;flex-direction:column;gap:14px}
+.chat-msg{
+  padding:14px 18px;border-radius:14px;
+  font-size:13.5px;line-height:1.6;
+  max-width:92%;
+}
+.chat-msg.user{
+  background:rgba(249,115,22,0.12);
+  border:1px solid rgba(249,115,22,0.18);
+  align-self:flex-end;
+}
+.chat-msg.ai{
+  background:rgba(255,255,255,0.04);
+  border:1px solid var(--border);
+  align-self:flex-start;
+}
+.chat-ai-label{
+  font-size:10px;text-transform:uppercase;letter-spacing:0.1em;
+  color:var(--purple);font-weight:600;margin-bottom:8px;
+}
+.typing-cursor{display:inline-block;animation:blink 1s step-end infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+.ai-results{display:flex;flex-direction:column;gap:16px}
+.results-title{
+  font-size:11px;text-transform:uppercase;letter-spacing:0.1em;
+  color:var(--muted);margin-bottom:4px;
+}
+.match-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:16px 18px;
+  display:flex;align-items:center;gap:14px;
+  transition:border-color 0.2s,background 0.2s;cursor:pointer;
+}
+.match-card:hover{border-color:rgba(168,85,247,0.3);background:var(--card2)}
+.match-emoji{font-size:24px}
+.match-info{flex:1}
+.match-title{font-size:14px;font-weight:500;margin-bottom:3px}
+.match-sub{font-size:12px;color:var(--muted)}
+.match-bar{height:3px;background:rgba(255,255,255,0.08);border-radius:2px;margin-top:6px}
+.match-bar-fill{
+  height:100%;border-radius:2px;
+  background:linear-gradient(90deg,var(--purple),var(--cyan));
+}
+.match-score{
+  font-family:'Syne',sans-serif;font-size:20px;font-weight:800;
+  color:var(--green);
+}
+.grant-box{
+  background:rgba(74,222,128,0.06);
+  border:1px solid rgba(74,222,128,0.18);
+  border-radius:14px;padding:16px 18px;
+}
+.grant-label{font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--green);margin-bottom:4px;font-weight:600}
+.grant-title{font-size:15px;font-weight:500;margin-bottom:2px}
+.grant-sub{font-size:12px;color:var(--muted)}
+
+/* ─────────────────────────────────────────────
+   JOURNEY / STEPS
+───────────────────────────────────────────── */
+.journey-strip{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+  background:var(--card);
+  margin-top:48px;
+}
+.journey-step{
+  padding:28px 16px;
+  border-right:1px solid var(--border);
+  text-align:center;
+  transition:background 0.2s;
+  position:relative;
+}
+.journey-step::after{
+  content:'→';
+  position:absolute;right:-10px;top:50%;transform:translateY(-50%);
+  font-size:12px;color:var(--muted2);
+  z-index:2;
+}
+.journey-step:last-child{border-right:none}
+.journey-step:last-child::after{display:none}
+.journey-step:hover{background:var(--card2)}
+.step-num{
+  font-family:'Syne',sans-serif;font-size:40px;font-weight:800;
+  color:rgba(249,115,22,0.15);line-height:1;margin-bottom:10px;
+}
+.step-icon{font-size:26px;margin-bottom:10px}
+.step-title{font-size:13px;font-weight:500;margin-bottom:6px}
+.step-desc{font-size:11px;color:var(--muted);line-height:1.5}
+
+/* ─────────────────────────────────────────────
+   IMPACT CARDS
+───────────────────────────────────────────── */
+.impact-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:16px;margin-top:48px;
+}
+.impact-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:28px;
+  position:relative;overflow:hidden;
+  transition:transform 0.2s;
+}
+.impact-card:hover{transform:translateY(-2px)}
+.impact-card-line{
+  position:absolute;bottom:0;left:0;right:0;height:2px;
+}
+.impact-num{
+  font-family:'Syne',sans-serif;font-size:40px;font-weight:800;
+  line-height:1;margin-bottom:10px;
+}
+.impact-label{font-size:15px;font-weight:500;margin-bottom:8px}
+.impact-desc{font-size:13px;color:var(--muted);line-height:1.6}
+
+/* ─────────────────────────────────────────────
+   BEFORE / AFTER
+───────────────────────────────────────────── */
+.before-after{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:20px;margin-top:40px;
+}
+.ba-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:24px;
+}
+.ba-header{
+  font-size:13px;font-weight:500;margin-bottom:16px;color:var(--muted);
+  display:flex;align-items:center;gap:8px;
+}
+.ba-list{display:flex;flex-direction:column;gap:10px}
+.ba-item{
+  font-size:13px;padding:10px 14px;border-radius:9px;
+  display:flex;align-items:flex-start;gap:10px;
+  line-height:1.5;
+}
+.ba-item.bad{background:rgba(248,113,113,0.06);border:1px solid rgba(248,113,113,0.12);color:rgba(240,240,245,0.7)}
+.ba-item.good{background:rgba(74,222,128,0.06);border:1px solid rgba(74,222,128,0.15);color:rgba(240,240,245,0.85)}
+.ba-icon{font-size:13px;flex-shrink:0;margin-top:1px}
+
+/* ─────────────────────────────────────────────
+   ROADMAP
+───────────────────────────────────────────── */
+.roadmap{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius-lg);overflow:hidden;margin-top:48px;
+}
+.phase{
+  display:grid;grid-template-columns:180px 1fr;
+  gap:28px;align-items:start;
+  padding:28px 32px;
+  border-bottom:1px solid var(--border);
+  transition:background 0.2s;
+}
+.phase:last-child{border-bottom:none}
+.phase:hover{background:rgba(255,255,255,0.015)}
+.phase-label{
+  font-size:11px;text-transform:uppercase;letter-spacing:0.1em;
+  font-weight:600;padding-top:3px;
+  display:flex;align-items:center;gap:8px;
+}
+.phase-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.phase-label.mvp .phase-dot{background:var(--green);box-shadow:0 0 8px rgba(74,222,128,0.5)}
+.phase-label.mvp{color:var(--green)}
+.phase-label.growth .phase-dot{background:var(--orange);box-shadow:0 0 8px rgba(249,115,22,0.5)}
+.phase-label.growth{color:var(--orange)}
+.phase-label.scale .phase-dot{background:var(--purple);box-shadow:0 0 8px rgba(168,85,247,0.5)}
+.phase-label.scale{color:var(--purple)}
+.phase-label.unicorn .phase-dot{background:var(--cyan);box-shadow:0 0 8px rgba(34,211,238,0.5)}
+.phase-label.unicorn{color:var(--cyan)}
+.phase-title{font-size:15px;font-weight:500;margin-bottom:10px}
+.phase-pills{display:flex;flex-wrap:wrap;gap:8px}
+.phase-pill{
+  font-size:12px;padding:5px 12px;border-radius:100px;
+  border:1px solid var(--border2);color:var(--muted);
+}
+
+/* ─────────────────────────────────────────────
+   WHY UNICORN CARDS
+───────────────────────────────────────────── */
+.unicorn-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:14px;margin-top:28px;
+}
+.unicorn-card{
+  padding:16px 18px;
+  background:rgba(255,255,255,0.025);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+}
+.unicorn-tag{
+  font-size:10px;text-transform:uppercase;letter-spacing:0.1em;
+  font-weight:600;margin-bottom:6px;
+}
+.unicorn-text{font-size:13px;color:var(--muted);line-height:1.55}
+
+/* ─────────────────────────────────────────────
+   PRICING / BENTO
+───────────────────────────────────────────── */
+.bento{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  grid-template-rows:auto auto;
+  gap:16px;margin-top:48px;
+}
+.bento-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:28px;
+  transition:border-color 0.2s,transform 0.15s;
+}
+.bento-card:hover{transform:translateY(-2px)}
+.bento-card.featured{
+  grid-row:span 2;
+  border-color:rgba(249,115,22,0.25);
+  background:linear-gradient(160deg,rgba(249,115,22,0.06),var(--card));
+  position:relative;overflow:hidden;
+}
+.bento-card.featured::before{
+  content:'MOST POPULAR';
+  position:absolute;top:16px;right:-24px;
+  font-size:9px;font-weight:700;letter-spacing:0.12em;
+  background:var(--orange);color:#fff;
+  padding:4px 36px;
+  transform:rotate(45deg);
+}
+.bento-card.wide{grid-column:span 2}
+.plan-name{font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:6px}
+.plan-price{
+  font-family:'Syne',sans-serif;font-size:36px;font-weight:800;
+  margin-bottom:4px;line-height:1;
+}
+.plan-note{font-size:12px;color:var(--muted);margin-bottom:24px}
+.plan-features{display:flex;flex-direction:column;gap:10px}
+.plan-feature{
+  font-size:13.5px;color:var(--muted);
+  display:flex;align-items:flex-start;gap:10px;line-height:1.5;
+}
+.plan-feature::before{
+  content:'✓';color:var(--green);font-weight:700;font-size:12px;flex-shrink:0;margin-top:1px;
+}
+.plan-divider{border:none;border-top:1px solid var(--border);margin:24px 0}
+.revenue-grid{
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;align-items:start;
+}
+.rev-item-title{font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:8px;font-weight:600}
+.rev-item-text{font-size:13px;color:var(--muted);line-height:1.55}
+
+/* ─────────────────────────────────────────────
+   GAMIFICATION
+───────────────────────────────────────────── */
+.levels-strip{
+  display:flex;gap:12px;margin-top:40px;overflow-x:auto;
+  padding-bottom:8px;scrollbar-width:thin;
+}
+.level-card{
+  flex-shrink:0;min-width:160px;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:20px;text-align:center;
+  transition:border-color 0.2s,transform 0.2s;cursor:pointer;
+}
+.level-card:hover{transform:translateY(-3px)}
+.level-card.active{border-color:var(--orange)}
+.level-emoji{font-size:32px;margin-bottom:10px}
+.level-name{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:4px}
+.level-xp{font-size:11px;color:var(--muted)}
+.xp-bar{height:3px;background:rgba(255,255,255,0.08);border-radius:2px;margin-top:10px}
+.xp-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--orange),var(--purple))}
+
+/* ─────────────────────────────────────────────
+   GRANT RADAR DEMO
+───────────────────────────────────────────── */
+.grant-radar{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius-lg);overflow:hidden;margin-top:48px;
+}
+.grant-radar-header{
+  padding:16px 24px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(255,255,255,0.02);
+}
+.grant-radar-title{font-size:14px;font-weight:500}
+.grant-count-badge{
+  font-size:11px;font-weight:600;
+  background:rgba(74,222,128,0.12);color:var(--green);
+  padding:4px 12px;border-radius:100px;
+}
+.grant-list{display:flex;flex-direction:column}
+.grant-row{
+  display:grid;grid-template-columns:1fr auto auto;
+  align-items:center;gap:16px;
+  padding:16px 24px;
+  border-bottom:1px solid var(--border);
+  transition:background 0.2s;cursor:pointer;
+}
+.grant-row:last-child{border-bottom:none}
+.grant-row:hover{background:rgba(255,255,255,0.025)}
+.grant-org{font-size:13px;font-weight:500;margin-bottom:3px}
+.grant-detail{font-size:12px;color:var(--muted)}
+.grant-amount{
+  font-family:'Syne',sans-serif;font-size:15px;font-weight:700;
+  color:var(--green);white-space:nowrap;
+}
+.grant-deadline{font-size:11px;color:var(--muted);text-align:right}
+.grant-match-pct{
+  font-size:10px;font-weight:600;letter-spacing:0.05em;
+  background:rgba(249,115,22,0.12);color:var(--orange);
+  padding:3px 8px;border-radius:100px;white-space:nowrap;
+}
+
+/* ─────────────────────────────────────────────
+   MENTOR CARDS
+───────────────────────────────────────────── */
+.mentor-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:16px;margin-top:48px;
+}
+.mentor-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:24px;
+  transition:border-color 0.2s,transform 0.2s;cursor:pointer;
+}
+.mentor-card:hover{border-color:rgba(168,85,247,0.25);transform:translateY(-2px)}
+.mentor-avatar{
+  width:52px;height:52px;border-radius:50%;
+  background:linear-gradient(135deg,var(--orange),var(--purple));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Syne',sans-serif;font-size:18px;font-weight:800;
+  color:#fff;margin-bottom:16px;
+  box-shadow:0 4px 16px rgba(249,115,22,0.25);
+}
+.mentor-name{font-size:15px;font-weight:500;margin-bottom:2px}
+.mentor-role{font-size:12px;color:var(--muted);margin-bottom:12px}
+.mentor-story{font-size:13px;color:var(--muted);line-height:1.55;margin-bottom:14px}
+.mentor-tag{
+  font-size:11px;padding:4px 10px;border-radius:100px;
+  border:1px solid var(--border2);color:var(--muted);
+  display:inline-block;margin-right:6px;margin-bottom:6px;
+}
+.mentor-btn{
+  margin-top:14px;width:100%;
+  padding:9px;border-radius:9px;
+  font-size:13px;font-weight:500;
+  border:1px solid var(--border2);color:var(--muted);
+  background:transparent;
+  transition:border-color 0.2s,color 0.2s,background 0.2s;
+  cursor:pointer;font-family:'DM Sans',sans-serif;
+}
+.mentor-btn:hover{border-color:rgba(168,85,247,0.4);color:var(--text);background:rgba(168,85,247,0.06)}
+
+/* ─────────────────────────────────────────────
+   PORTFOLIO BUILDER DEMO
+───────────────────────────────────────────── */
+.portfolio-demo{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:24px;margin-top:48px;align-items:start;
+}
+.portfolio-input{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:24px;
+}
+.input-group{margin-bottom:16px}
+.input-label{
+  font-size:11px;text-transform:uppercase;letter-spacing:0.08em;
+  color:var(--muted);font-weight:600;margin-bottom:6px;display:block;
+}
+.input-field{
+  width:100%;background:rgba(255,255,255,0.04);
+  border:1px solid var(--border2);border-radius:9px;
+  padding:10px 14px;font-size:14px;color:var(--text);
+  font-family:'DM Sans',sans-serif;
+  transition:border-color 0.2s;outline:none;
+}
+.input-field:focus{border-color:rgba(249,115,22,0.4)}
+.input-field::placeholder{color:var(--muted2)}
+textarea.input-field{resize:none;height:80px}
+.portfolio-output{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:24px;
+  min-height:300px;
+}
+.portfolio-output-header{
+  font-size:11px;text-transform:uppercase;letter-spacing:0.08em;
+  color:var(--green);font-weight:600;margin-bottom:16px;
+  display:flex;align-items:center;gap:8px;
+}
+.ai-output-text{
+  font-size:14px;color:var(--muted);line-height:1.7;
+  border-left:2px solid rgba(168,85,247,0.3);
+  padding-left:16px;
+  font-style:italic;
+}
+.generate-btn{
+  width:100%;
+  background:linear-gradient(90deg,var(--orange),var(--purple));
+  color:#fff;padding:12px;border-radius:10px;
+  font-size:14px;font-weight:500;
+  cursor:pointer;border:none;font-family:'DM Sans',sans-serif;
+  transition:opacity 0.2s,transform 0.15s;
+  box-shadow:0 4px 20px rgba(168,85,247,0.25);
+}
+.generate-btn:hover{opacity:0.88;transform:translateY(-1px)}
+
+/* ─────────────────────────────────────────────
+   COST SIMULATOR
+───────────────────────────────────────────── */
+.simulator{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:32px;margin-top:48px;
+}
+.sim-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+.sim-controls{display:flex;flex-direction:column;gap:20px}
+.slider-group{}
+.slider-label{
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:13px;margin-bottom:8px;
+}
+.slider-label span:first-child{color:var(--muted)}
+.slider-value{
+  font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--orange);
+}
+.slider{
+  width:100%;height:4px;
+  -webkit-appearance:none;appearance:none;
+  background:rgba(255,255,255,0.1);border-radius:2px;cursor:pointer;outline:none;
+}
+.slider::-webkit-slider-thumb{
+  -webkit-appearance:none;width:16px;height:16px;
+  border-radius:50%;background:var(--orange);
+  box-shadow:0 0 10px rgba(249,115,22,0.4);cursor:pointer;
+}
+.slider::-moz-range-thumb{
+  width:16px;height:16px;border-radius:50%;
+  background:var(--orange);border:none;cursor:pointer;
+}
+.sim-results{display:flex;flex-direction:column;gap:14px}
+.sim-result-card{
+  background:rgba(255,255,255,0.03);
+  border:1px solid var(--border);border-radius:12px;padding:18px;
+}
+.sim-result-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px}
+.sim-result-value{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;margin-bottom:4px}
+.sim-result-sub{font-size:12px;color:var(--muted)}
+.sim-progress{height:4px;background:rgba(255,255,255,0.08);border-radius:2px;margin-top:12px}
+.sim-progress-fill{height:100%;border-radius:2px;transition:width 0.4s ease}
+
+/* ─────────────────────────────────────────────
+   FOOTER CTA
+───────────────────────────────────────────── */
+.footer-cta{
+  padding:100px 0;text-align:center;
+  position:relative;overflow:hidden;
+}
+.footer-cta-glow{
+  position:absolute;bottom:-200px;left:50%;transform:translateX(-50%);
+  width:700px;height:500px;
+  background:radial-gradient(ellipse,rgba(168,85,247,0.1) 0%,transparent 70%);
+  pointer-events:none;
+}
+.footer-cta-title{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(32px,5vw,60px);
+  font-weight:800;letter-spacing:-2px;
+  margin-bottom:20px;line-height:1.05;
+}
+.footer-cta-sub{
+  font-size:17px;color:var(--muted);
+  max-width:480px;margin:0 auto 40px;line-height:1.65;font-weight:300;
+}
+.footer-actions{
+  display:flex;gap:14px;justify-content:center;flex-wrap:wrap;
+}
+.footer-note{
+  font-size:12px;color:var(--muted2);margin-top:48px;
+  border-top:1px solid var(--border);padding-top:32px;
+  display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap;
+}
+
+/* ─────────────────────────────────────────────
+   MOBILE NAV OVERLAY
+───────────────────────────────────────────── */
+.mobile-nav{
+  display:none;position:fixed;
+  top:0;left:0;right:0;bottom:0;z-index:999;
+  background:rgba(10,10,15,0.98);
+  flex-direction:column;align-items:center;justify-content:center;gap:28px;
+  backdrop-filter:blur(20px);
+}
+.mobile-nav.open{display:flex}
+.mobile-nav a{
+  font-family:'Syne',sans-serif;font-size:28px;font-weight:700;
+  color:var(--muted);transition:color 0.2s;
+}
+.mobile-nav a:hover{color:var(--text)}
+.mobile-close{
+  position:absolute;top:24px;right:32px;
+  font-size:24px;color:var(--muted);cursor:pointer;
+  background:none;border:none;font-family:'DM Sans',sans-serif;
+}
+
+/* ─────────────────────────────────────────────
+   SCROLL REVEAL ANIMATION
+───────────────────────────────────────────── */
+.reveal{
+  opacity:0;transform:translateY(24px);
+  transition:opacity 0.6s ease,transform 0.6s ease;
+}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:0.1s}
+.reveal-delay-2{transition-delay:0.2s}
+.reveal-delay-3{transition-delay:0.3s}
+
+/* ─────────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────────── */
+@media(max-width:900px){
+  .nav-links,.nav-cta{display:none}
+  .nav-mobile-toggle{display:flex}
+  .ai-demo-layout{grid-template-columns:1fr}
+  .portfolio-demo{grid-template-columns:1fr}
+  .sim-grid{grid-template-columns:1fr}
+  .bento{grid-template-columns:1fr}
+  .bento-card.featured{grid-row:auto}
+  .bento-card.wide{grid-column:auto}
+  .before-after{grid-template-columns:1fr}
+  .journey-strip{grid-template-columns:1fr;border-radius:var(--radius-lg)}
+  .journey-step{border-right:none;border-bottom:1px solid var(--border)}
+  .journey-step::after{display:none}
+  .journey-step:last-child{border-bottom:none}
+  .feature-card.wide{grid-column:auto}
+  .container{padding:0 20px}
+  .nav{padding:14px 24px}
+  .phase{grid-template-columns:1fr;gap:10px}
+  .revenue-grid{grid-template-columns:1fr}
+  .unicorn-grid{grid-template-columns:1fr}
+}
+
+/* ─────────────────────────────────────────────
+   ACTIVE NAV INDICATOR
+───────────────────────────────────────────── */
+.nav-links a.active{color:var(--text)}
+
+/* ─────────────────────────────────────────────
+   MY SPACE — PERSONAL DASHBOARD
+───────────────────────────────────────────── */
+.myspace-hero{
+  background:linear-gradient(135deg,rgba(249,115,22,0.06),rgba(168,85,247,0.06));
+  border:1px solid rgba(249,115,22,0.15);
+  border-radius:var(--radius-lg);
+  padding:36px;
+  margin-bottom:32px;
+  position:relative;overflow:hidden;
+}
+.myspace-hero::before{
+  content:'';position:absolute;top:-60px;right:-60px;
+  width:200px;height:200px;
+  background:radial-gradient(ellipse,rgba(249,115,22,0.12),transparent 70%);
+  pointer-events:none;
+}
+.myspace-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:28px}
+.myspace-tab{
+  padding:9px 20px;border-radius:9px;
+  font-size:13px;font-weight:500;
+  border:1px solid var(--border2);
+  background:transparent;color:var(--muted);
+  cursor:pointer;transition:all 0.2s;font-family:'DM Sans',sans-serif;
+}
+.myspace-tab:hover{background:var(--muted3);color:var(--text)}
+.myspace-tab.active{
+  background:var(--orange);color:#fff;
+  border-color:var(--orange);
+  box-shadow:0 4px 16px rgba(249,115,22,0.3);
+}
+.myspace-panel{display:none}
+.myspace-panel.active{display:block}
+
+/* Grades Input */
+.grades-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:12px;margin-bottom:20px;
+}
+.grade-item{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:16px;
+  transition:border-color 0.2s;
+}
+.grade-item:focus-within{border-color:rgba(249,115,22,0.4)}
+.grade-item label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;display:block;margin-bottom:8px;font-weight:600}
+.grade-input{
+  width:100%;background:rgba(255,255,255,0.04);
+  border:1px solid var(--border2);border-radius:8px;
+  padding:10px 14px;color:var(--text);font-family:'DM Sans',sans-serif;
+  font-size:18px;font-weight:600;text-align:center;
+  transition:border-color 0.2s,background 0.2s;outline:none;
+  -moz-appearance:textfield;
+}
+.grade-input::-webkit-inner-spin-button{display:none}
+.grade-input:focus{border-color:var(--orange);background:rgba(249,115,22,0.06)}
+.grade-scale{font-size:10px;color:var(--muted2);text-align:center;margin-top:6px}
+
+/* Achievements */
+.achievement-list{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
+.achievement-row{
+  display:flex;align-items:center;gap:10px;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:12px 16px;
+  transition:border-color 0.2s;
+}
+.achievement-row:focus-within{border-color:rgba(168,85,247,0.35)}
+.achievement-emoji-picker{
+  background:none;border:1px solid var(--border2);
+  border-radius:8px;padding:6px 10px;
+  font-size:18px;cursor:pointer;
+  transition:border-color 0.2s,background 0.2s;
+  font-family:'DM Sans',sans-serif;
+}
+.achievement-emoji-picker:hover{background:var(--muted3);border-color:var(--border2)}
+.achievement-text{
+  flex:1;background:transparent;border:none;
+  color:var(--text);font-family:'DM Sans',sans-serif;
+  font-size:14px;outline:none;
+}
+.achievement-text::placeholder{color:var(--muted2)}
+.achievement-type{
+  font-size:10px;padding:4px 10px;border-radius:100px;
+  background:var(--purple-dim);color:var(--purple);
+  font-weight:600;letter-spacing:0.06em;text-transform:uppercase;
+  white-space:nowrap;
+}
+.add-achievement-btn{
+  display:flex;align-items:center;gap:8px;
+  padding:10px 18px;border-radius:9px;
+  border:1px dashed var(--border2);background:transparent;
+  color:var(--muted);font-size:13px;cursor:pointer;
+  transition:all 0.2s;font-family:'DM Sans',sans-serif;
+  width:100%;justify-content:center;
+}
+.add-achievement-btn:hover{border-color:var(--orange);color:var(--orange);background:var(--orange-glow)}
+
+/* Portfolio Score */
+.score-ring-wrap{
+  display:flex;flex-direction:column;align-items:center;
+  justify-content:center;padding:24px;
+}
+.score-ring{position:relative;width:140px;height:140px;margin-bottom:16px}
+.score-ring svg{transform:rotate(-90deg)}
+.score-ring-bg{fill:none;stroke:rgba(255,255,255,0.06);stroke-width:10}
+.score-ring-fill{
+  fill:none;stroke-width:10;stroke-linecap:round;
+  stroke-dasharray:376;
+  transition:stroke-dashoffset 1s cubic-bezier(.4,0,.2,1);
+}
+.score-center{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+}
+.score-num{
+  font-family:'Syne',sans-serif;font-size:36px;font-weight:800;line-height:1;
+}
+.score-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em}
+.score-breakdown{
+  display:flex;flex-direction:column;gap:10px;flex:1;
+}
+.score-bar-row{display:flex;align-items:center;gap:12px}
+.score-bar-label{font-size:12px;color:var(--muted);width:120px;flex-shrink:0}
+.score-bar-track{flex:1;height:6px;background:rgba(255,255,255,0.07);border-radius:3px;overflow:hidden}
+.score-bar-fill{height:100%;border-radius:3px;transition:width 1s cubic-bezier(.4,0,.2,1)}
+.score-bar-val{font-size:12px;font-weight:600;width:36px;text-align:right;flex-shrink:0}
+
+/* University Cards */
+.uni-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+  gap:14px;margin-top:16px;
+}
+.uni-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:20px;
+  transition:border-color 0.25s,transform 0.2s,background 0.2s;
+  cursor:pointer;position:relative;overflow:hidden;
+}
+.uni-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  transition:opacity 0.2s;
+}
+.uni-card.reach::before{background:linear-gradient(90deg,var(--orange),var(--purple))}
+.uni-card.target::before{background:linear-gradient(90deg,var(--cyan),var(--green))}
+.uni-card.safety::before{background:linear-gradient(90deg,var(--green),var(--cyan))}
+.uni-card:hover{transform:translateY(-3px);border-color:rgba(255,255,255,0.15);background:var(--card2)}
+.uni-card-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}
+.uni-flag{font-size:26px}
+.uni-badge{
+  font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;
+  padding:3px 10px;border-radius:100px;flex-shrink:0;
+}
+.uni-badge.reach{background:rgba(249,115,22,0.15);color:var(--orange)}
+.uni-badge.target{background:rgba(34,211,238,0.15);color:var(--cyan)}
+.uni-badge.safety{background:rgba(74,222,128,0.15);color:var(--green)}
+.uni-name{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;margin-bottom:3px;letter-spacing:-0.2px}
+.uni-program{font-size:12px;color:var(--purple);margin-bottom:10px;font-weight:500}
+.uni-meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.uni-meta-chip{
+  font-size:10px;padding:3px 9px;border-radius:100px;
+  background:rgba(255,255,255,0.05);border:1px solid var(--border);
+  color:var(--muted);
+}
+.uni-match{
+  display:flex;align-items:center;gap:8px;
+  padding:10px 12px;
+  background:rgba(255,255,255,0.03);border-radius:9px;
+}
+.uni-match-bar{flex:1;height:4px;background:rgba(255,255,255,0.07);border-radius:2px;overflow:hidden}
+.uni-match-fill{height:100%;border-radius:2px}
+.uni-match-pct{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;flex-shrink:0}
+.uni-scholarship{
+  margin-top:10px;font-size:11px;color:var(--green);
+  display:flex;align-items:center;gap:6px;
+  background:rgba(74,222,128,0.06);border:1px solid rgba(74,222,128,0.15);
+  padding:6px 10px;border-radius:8px;
+}
+
+/* Analyze button */
+.analyze-btn{
+  background:linear-gradient(135deg,var(--orange),var(--purple));
+  color:#fff;padding:14px 32px;border-radius:11px;
+  font-size:15px;font-weight:600;cursor:pointer;
+  border:none;font-family:'DM Sans',sans-serif;
+  box-shadow:0 4px 24px rgba(249,115,22,0.3);
+  transition:transform 0.15s,box-shadow 0.2s,opacity 0.2s;
+  display:flex;align-items:center;gap:10px;
+}
+.analyze-btn:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(249,115,22,0.4);opacity:0.95}
+.analyze-btn:disabled{opacity:0.6;transform:none;cursor:default}
+
+/* Progress Tracker */
+.tracker-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-bottom:24px}
+.tracker-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:16px;
+  display:flex;align-items:center;gap:14px;
+  transition:border-color 0.2s;cursor:pointer;
+}
+.tracker-card.done{border-color:rgba(74,222,128,0.25);background:rgba(74,222,128,0.03)}
+.tracker-card.done .tracker-icon{background:rgba(74,222,128,0.15);color:var(--green)}
+.tracker-icon{
+  width:40px;height:40px;border-radius:10px;
+  background:rgba(255,255,255,0.05);
+  display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;
+}
+.tracker-name{font-size:13px;font-weight:500;margin-bottom:3px}
+.tracker-xp{font-size:11px;color:var(--muted)}
+.tracker-check{
+  margin-left:auto;width:20px;height:20px;border-radius:50%;
+  border:2px solid var(--border2);display:flex;align-items:center;justify-content:center;
+  font-size:11px;flex-shrink:0;transition:all 0.2s;
+}
+.tracker-card.done .tracker-check{background:var(--green);border-color:var(--green);color:#000}
+
+/* floating particles */
+.particle{
+  position:fixed;border-radius:50%;pointer-events:none;z-index:0;
+  animation:float-up linear infinite;opacity:0;
+}
+@keyframes float-up{
+  0%{transform:translateY(100vh) scale(0);opacity:0}
+  10%{opacity:0.4}
+  90%{opacity:0.1}
+  100%{transform:translateY(-10vh) scale(1);opacity:0}
+}
+
+/* ─────────────────────────────────────────────
+   FREE BANNER
+───────────────────────────────────────────── */
+.free-banner{
+  background:linear-gradient(90deg,rgba(74,222,128,0.1),rgba(34,211,238,0.08));
+  border-bottom:1px solid rgba(74,222,128,0.2);
+  padding:10px 0;text-align:center;
+  font-size:13px;font-weight:500;
+  position:relative;z-index:1001;
+}
+.free-banner span{color:var(--green)}
+.free-banner strong{color:#fff}
+
+/* ─────────────────────────────────────────────
+   CAREER GUIDANCE SECTION
+───────────────────────────────────────────── */
+.career-tabs{
+  display:flex;gap:8px;flex-wrap:wrap;
+  margin-bottom:32px;margin-top:40px;
+}
+.career-tab{
+  padding:9px 20px;border-radius:100px;
+  font-size:13px;font-weight:500;cursor:pointer;
+  border:1px solid var(--border2);color:var(--muted);
+  background:transparent;font-family:'DM Sans',sans-serif;
+  transition:all 0.2s;
+}
+.career-tab.active,.career-tab:hover{
+  background:linear-gradient(90deg,rgba(249,115,22,0.15),rgba(168,85,247,0.15));
+  border-color:rgba(249,115,22,0.4);color:var(--text);
+}
+.career-panels{margin-top:8px}
+.career-panel{display:none}
+.career-panel.active{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+@media(max-width:900px){.career-panel.active{grid-template-columns:1fr}}
+.career-info-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:28px;
+}
+.career-name{
+  font-family:'Syne',sans-serif;font-size:26px;font-weight:800;
+  letter-spacing:-0.8px;margin-bottom:8px;
+}
+.career-meta{
+  display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;
+}
+.career-chip{
+  font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;
+  padding:4px 12px;border-radius:100px;
+}
+.career-desc{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:20px}
+.career-skills-title{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;font-weight:600}
+.career-skills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
+.career-skill{
+  font-size:12px;padding:5px 12px;border-radius:100px;
+  border:1px solid var(--border2);color:var(--muted);
+}
+.career-pathways{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:28px;
+}
+.pathway-item{
+  display:flex;gap:14px;padding:16px 0;
+  border-bottom:1px solid var(--border);
+}
+.pathway-item:last-child{border-bottom:none}
+.pathway-num{
+  font-family:'Syne',sans-serif;font-size:20px;font-weight:800;
+  color:var(--orange);flex-shrink:0;width:28px;
+}
+.pathway-title{font-size:14px;font-weight:500;margin-bottom:4px}
+.pathway-desc{font-size:13px;color:var(--muted);line-height:1.55}
+.pathway-duration{font-size:11px;color:var(--cyan);margin-top:4px;font-weight:500}
+
+.salary-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;
+}
+.salary-card{
+  background:rgba(255,255,255,0.03);border:1px solid var(--border);
+  border-radius:10px;padding:14px;
+}
+.salary-region{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px}
+.salary-range{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--green)}
+
+.free-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;
+  background:rgba(74,222,128,0.12);color:var(--green);
+  border:1px solid rgba(74,222,128,0.25);
+  padding:5px 14px;border-radius:100px;margin-bottom:24px;
+}
+
+/* ─────────────────────────────────────────────
+   QUIZ WIDGET
+───────────────────────────────────────────── */
+.quiz-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:32px;margin-top:48px;
+}
+.quiz-progress{
+  display:flex;gap:4px;margin-bottom:28px;
+}
+.quiz-progress-step{
+  flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,0.08);
+  transition:background 0.3s;
+}
+.quiz-progress-step.done{background:var(--orange)}
+.quiz-progress-step.current{background:linear-gradient(90deg,var(--orange),var(--purple))}
+.quiz-question{
+  font-family:'Syne',sans-serif;font-size:20px;font-weight:700;
+  letter-spacing:-0.3px;margin-bottom:20px;line-height:1.3;
+}
+.quiz-options{display:flex;flex-direction:column;gap:10px}
+.quiz-option{
+  padding:14px 18px;border-radius:12px;
+  border:1px solid var(--border2);font-size:14px;color:var(--muted);
+  background:rgba(255,255,255,0.02);cursor:pointer;
+  font-family:'DM Sans',sans-serif;text-align:left;
+  transition:all 0.2s;display:flex;align-items:center;gap:12px;
+}
+.quiz-option:hover{border-color:rgba(249,115,22,0.35);color:var(--text);background:rgba(249,115,22,0.05)}
+.quiz-option.selected{border-color:var(--orange);color:var(--text);background:rgba(249,115,22,0.1)}
+.quiz-option-icon{font-size:18px;flex-shrink:0}
+.quiz-result{
+  display:none;text-align:center;padding:20px 0;
+}
+.quiz-result.show{display:block}
+.quiz-result-career{
+  font-family:'Syne',sans-serif;font-size:28px;font-weight:800;
+  letter-spacing:-1px;margin:12px 0 8px;
+}
+.quiz-result-sub{font-size:14px;color:var(--muted);margin-bottom:24px;line-height:1.6}
+.quiz-nav{display:flex;justify-content:space-between;align-items:center;margin-top:20px}
+.quiz-step-label{font-size:12px;color:var(--muted2)}
+</style>
+</head>
+<body>
+
+<!-- FREE BANNER -->
+<div class="free-banner">
+  🎓 <strong>Project ER is 100% free for students</strong> — <span>every core feature, forever. No credit card. No catch.</span>
+</div>
+
+<!-- MOBILE NAV OVERLAY -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-close" onclick="closeMobileNav()">✕</button>
+  <a href="#features" onclick="closeMobileNav()">Features</a>
+  <a href="#career-guidance" onclick="closeMobileNav()">Careers</a>
+  <a href="#ai-demo" onclick="closeMobileNav()">AI Demo</a>
+  <a href="#grants" onclick="closeMobileNav()">Grants</a>
+  <a href="#mentors" onclick="closeMobileNav()">Mentors</a>
+  <a href="#impact" onclick="closeMobileNav()">Impact</a>
+  <a href="#roadmap" onclick="closeMobileNav()">Roadmap</a>
+  <a href="#pricing" onclick="closeMobileNav()">Pricing</a>
+  <a href="#my-space" onclick="closeMobileNav()" style="color:var(--orange)">✦ My Space</a>
+</div>
+
+<!-- FLOATING PARTICLES (decorative) -->
+<div id="particles-container"></div>
+
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <div class="nav-logo">
+    <div class="nav-logo-mark">🌟</div>
+    Project ER
+  </div>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#career-guidance">Careers</a></li>
+    <li><a href="#ai-demo">AI Demo</a></li>
+    <li><a href="#grants">Grants</a></li>
+    <li><a href="#mentors">Mentors</a></li>
+    <li><a href="#impact">Impact</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#my-space" style="color:var(--orange);font-weight:500">✦ My Space</a></li>
+  </ul>
+  <a href="#my-space" class="nav-cta" style="display:inline-flex;align-items:center;gap:6px">✦ My Space</a>
+  <div class="nav-mobile-toggle" onclick="openMobileNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero page-section" id="home">
+  <div class="hero-glow"></div>
+  <div class="hero-grid"></div>
+  <div class="container" style="position:relative;z-index:1">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-dot"></div>
+      Global EdTech Innovation 2026
+    </div>
+    <h1 class="hero-title font-display">
+      Every student deserves a<br>
+      <span class="grad-text">world-class future</span>
+    </h1>
+    <p class="hero-sub">Project ER is the AI-powered career navigation ecosystem that gives students from rural and regional schools the same opportunities as students from elite institutions — anywhere in the world.</p>
+    <div class="hero-actions">
+      <a href="#features" class="btn-primary">Explore the platform →</a>
+      <a href="#ai-demo" class="btn-ghost">See AI in action ↓</a>
+    </div>
+
+    <div class="stats-strip reveal">
+      <div class="stat-item">
+        <div class="stat-num o">265M</div>
+        <div class="stat-label">underserved students<br>globally</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num p">$8.4T</div>
+        <div class="stat-label">global EdTech market<br>by 2030</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num c">73%</div>
+        <div class="stat-label">students choose careers<br>without real data</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num g">40K+</div>
+        <div class="stat-label">hidden scholarships<br>unmapped today</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section page-section" id="features">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-kicker o">Core Platform</div>
+      <h2 class="section-title font-display">Seven modules.<br>One complete ecosystem.</h2>
+      <p class="section-desc">Each feature is designed to close a specific gap that holds talented students back from the futures they deserve.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card reveal">
+        <div class="feature-card-accent" style="background:linear-gradient(90deg,var(--orange),transparent)"></div>
+        <div class="feature-icon" style="background:rgba(249,115,22,0.1)">🧠</div>
+        <div class="feature-title">AI Career Intelligence</div>
+        <div class="feature-desc">Deep 5-dimension personality and skills analysis. Predicts high-demand careers for 2030–2035. Shows real salaries by country, city, and company tier. Recommends full career strategies, not just job titles.</div>
+        <span class="feature-tag tag-o">Wow Feature</span>
+      </div>
+
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-card-accent" style="background:linear-gradient(90deg,var(--purple),transparent)"></div>
+        <div class="feature-icon" style="background:rgba(168,85,247,0.1)">🎯</div>
+        <div class="feature-title">Global Grant Radar</div>
+        <div class="feature-desc">AI scans 40,000+ scholarships, hidden funds, and regional grants worldwide. Personalized match scores. Automatic deadline reminders. Surfaces opportunities most students never find.</div>
+        <span class="feature-tag tag-p">Hidden Gem</span>
+      </div>
+
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="feature-card-accent" style="background:linear-gradient(90deg,var(--cyan),transparent)"></div>
+        <div class="feature-icon" style="background:rgba(34,211,238,0.1)">📁</div>
+        <div class="feature-title">Portfolio Forge</div>
+        <div class="feature-desc">Transforms Olympiads, volunteer work, and school achievements into professional portfolios. AI writes compelling narratives for each experience. Templates for universities, internships, and employers.</div>
+        <span class="feature-tag tag-c">AI-Powered</span>
+      </div>
+
+      <div class="feature-card reveal">
+        <div class="feature-card-accent" style="background:linear-gradient(90deg,var(--green),transparent)"></div>
+        <div class="feature-icon" style="background:rgba(74,222,128,0.1)">💸</div>
+        <div class="feature-title">Life Cost Simulator</div>
+        <div class="feature-desc">Real education and living cost data for 120+ cities across 60+ countries. Budget planning tools. Shows exactly how much you need and exactly how to fund it — grants, scholarships, and part-time work combined.</div>
+        <span class="feature-tag tag-g">Reality Check</span>
+      </div>
+
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-card-accent" style="background:linear-gradient(90deg,var(--orange),transparent)"></div>
+        <div class="feature-icon" style="background:rgba(249,115,22,0.1)">📶</div>
+        <div class="feature-title">Offline-First Core</div>
+        <div class="feature-desc">Full functionality on 2G networks and low-end Android devices. Critical content cached locally. Works equally well in Kazakh steppes, African villages, Indonesian islands, and remote mountain towns.</div>
+        <span class="feature-tag tag-o">Equity Core</span>
+      </div>
+
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="feature-card-accent" style="background:linear-gradient(90deg,var(--purple),transparent)"></div>
+        <div class="feature-icon" style="background:rgba(168,85,247,0.1)">🤝</div>
+        <div class="feature-title">Mentor Match</div>
+        <div class="feature-desc">Connects students with university students, alumni, and professionals who started from similar backgrounds. Real success stories. Not generic LinkedIn profiles — people who actually walked the same path.</div>
+        <span class="feature-tag tag-p">Community</span>
+      </div>
+
+      <div class="feature-card wide reveal">
+        <div class="feature-card-accent" style="background:linear-gradient(90deg,var(--cyan),transparent)"></div>
+        <div class="feature-icon" style="background:rgba(34,211,238,0.1)">🏆</div>
+        <div class="feature-title">Gamification Engine — "The Forge"</div>
+        <div class="feature-desc">Students level up through real-world challenges: complete your first scholarship application → earn Scholar rank. Connect with a mentor → unlock Networker badge. Submit a university application → become a Trailblazer. Every action moves students forward on a personalized roadmap that makes ambitious goals feel achievable step by step. XP, streaks, team challenges, and leaderboards build a thriving peer community.</div>
+        <span class="feature-tag tag-c">Engagement Loop</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAREER GUIDANCE -->
+<section class="section page-section" id="career-guidance" style="background:linear-gradient(180deg,var(--black),var(--deep),var(--black))">
+  <div class="container">
+    <div class="reveal">
+      <div class="free-badge">✦ 100% Free for Students</div>
+      <div class="section-kicker o">Career Guidance Hub</div>
+      <h2 class="section-title font-display">Explore real careers.<br><span class="grad-text">Find your path.</span></h2>
+      <p class="section-desc">Detailed, data-driven guidance on high-growth careers matched to your strengths — with realistic salary data, step-by-step pathways, and skills to build. All free, forever.</p>
+    </div>
+
+    <!-- TABS -->
+    <div class="career-tabs reveal">
+      <button class="career-tab active" onclick="switchCareer('biomedical')">🧬 Biomedical</button>
+      <button class="career-tab" onclick="switchCareer('software')">💻 Software Eng</button>
+      <button class="career-tab" onclick="switchCareer('data')">📊 Data Science</button>
+      <button class="career-tab" onclick="switchCareer('law')">⚖️ Law</button>
+      <button class="career-tab" onclick="switchCareer('education')">🎓 Education</button>
+      <button class="career-tab" onclick="switchCareer('business')">📈 Business</button>
+    </div>
+
+    <!-- BIOMEDICAL PANEL -->
+    <div class="career-panels">
+      <div class="career-panel active" id="panel-biomedical">
+        <div class="career-info-card reveal">
+          <div class="career-name">Biomedical Engineer</div>
+          <div class="career-meta">
+            <span class="career-chip tag-o">High Demand 2030</span>
+            <span class="career-chip tag-g">STEM</span>
+            <span class="career-chip tag-p">Research</span>
+          </div>
+          <div class="career-desc">Biomedical engineers design and build medical devices, diagnostic equipment, and healthcare technology that saves lives. This field sits at the intersection of biology, medicine, and engineering — one of the fastest-growing professions globally. Rural-background students with strong science foundations are especially valued for their problem-solving resilience.</div>
+          <div class="career-skills-title">Key skills to build</div>
+          <div class="career-skills">
+            <span class="career-skill">Biology & Physiology</span>
+            <span class="career-skill">Engineering Maths</span>
+            <span class="career-skill">CAD & 3D Modelling</span>
+            <span class="career-skill">Data Analysis</span>
+            <span class="career-skill">Python / MATLAB</span>
+            <span class="career-skill">Research Writing</span>
+            <span class="career-skill">Lab Skills</span>
+          </div>
+          <div class="salary-grid">
+            <div class="salary-card">
+              <div class="salary-region">Kazakhstan / Central Asia</div>
+              <div class="salary-range">$18K – $45K/yr</div>
+            </div>
+            <div class="salary-card">
+              <div class="salary-region">Germany / EU</div>
+              <div class="salary-range">$55K – $90K/yr</div>
+            </div>
+            <div class="salary-card">
+              <div class="salary-region">United Kingdom</div>
+              <div class="salary-range">$50K – $85K/yr</div>
+            </div>
+            <div class="salary-card">
+              <div class="salary-region">United States</div>
+              <div class="salary-range">$75K – $140K/yr</div>
+            </div>
+          </div>
+        </div>
+        <div class="career-pathways reveal reveal-delay-1">
+          <div style="font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;font-weight:600;margin-bottom:20px">Step-by-step pathway</div>
+          <div class="pathway-item">
+            <div class="pathway-num">01</div>
+            <div>
+              <div class="pathway-title">Excel in Biology, Chemistry & Maths at school</div>
+              <div class="pathway-desc">Build the science foundation. Participate in Olympiads — these are significant advantages in applications.</div>
+              <div class="pathway-duration">Now → Grade 12</div>
+            </div>
+          </div>
+          <div class="pathway-item">
+            <div class="pathway-num">02</div>
+            <div>
+              <div class="pathway-title">Apply to Biomedical or Bioengineering degree</div>
+              <div class="pathway-desc">Top programs: ETH Zurich, TU Delft, Imperial College, NUS Singapore. Many offer full scholarships for developing-country students.</div>
+              <div class="pathway-duration">Year 1 of University</div>
+            </div>
+          </div>
+          <div class="pathway-item">
+            <div class="pathway-num">03</div>
+            <div>
+              <div class="pathway-title">Secure a research internship or lab placement</div>
+              <div class="pathway-desc">Hospital or university labs often take undergrads. DAAD, Erasmus, and IAESTE programs fund international placements.</div>
+              <div class="pathway-duration">Year 2 – 3</div>
+            </div>
+          </div>
+          <div class="pathway-item">
+            <div class="pathway-num">04</div>
+            <div>
+              <div class="pathway-title">Specialize: devices, diagnostics, or biotech</div>
+              <div class="pathway-desc">Choose your niche. Wearables, prosthetics, genomics tools, hospital systems — all are high-growth areas for the next decade.</div>
+              <div class="pathway-duration">Year 4 + Masters</div>
+            </div>
+          </div>
+          <div class="pathway-item">
+            <div class="pathway-num">05</div>
+            <div>
+              <div class="pathway-title">First role: R&D Lab, MedTech startup, or hospital</div>
+              <div class="pathway-desc">Entry-level engineers earn $40–75K in Europe/UK. Project ER employer connections get you directly in front of hiring teams.</div>
+              <div class="pathway-duration">Graduation → Year 1 of career</div>
+            </div>
+          </div>
+          <button class="btn-primary" style="margin-top:20px;justify-content:center;width:100%" onclick="scrollToMySpace('biomedical')">Generate My Biomedical Roadmap →</button>
+        </div>
+      </div>
+
+      <!-- SOFTWARE ENG PANEL -->
+      <div class="career-panel" id="panel-software">
+        <div class="career-info-card reveal">
+          <div class="career-name">Software Engineer</div>
+          <div class="career-meta">
+            <span class="career-chip tag-c">Highest Demand</span>
+            <span class="career-chip tag-o">Remote-Friendly</span>
+            <span class="career-chip tag-p">Global</span>
+          </div>
+          <div class="career-desc">Software engineers build the apps, systems, and infrastructure that power modern life. Uniquely accessible from anywhere — top engineers from rural Kazakhstan or rural Kenya work remotely for companies in Silicon Valley, London, and Berlin. No geography barrier. Highest salary ceiling of any field accessible to first-generation students.</div>
+          <div class="career-skills-title">Key skills to build</div>
+          <div class="career-skills">
+            <span class="career-skill">Python / JavaScript</span>
+            <span class="career-skill">Algorithms & Data Structures</span>
+            <span class="career-skill">Git & Version Control</span>
+            <span class="career-skill">Databases (SQL)</span>
+            <span class="career-skill">System Design</span>
+            <span class="career-skill">Cloud (AWS / Azure)</span>
+            <span class="career-skill">Open Source</span>
+          </div>
+          <div class="salary-grid">
+            <div class="salary-card">
+              <div class="salary-region">Remote (global)</div>
+              <div class="salary-range">$40K – $200K+/yr</div>
+            </div>
+            <div class="salary-card">
+              <div class="salary-region">Germany / EU</div>
+              <div class="salary-range">$65K – $120K/yr</div>
+            </div>
+            <div class="salary-card">
+              <div class="salary-region">United Kingdom</div>
+              <div class="salary-range">$60K – $130K/yr</div>
+            </div>
+            <div class="salary-card">
+              <div class="salary-region">United States</div>
+              <div class="salary-range">$100K – $300K+/yr</div>
+            </div>
+          </div>
+        </div>
+        <div class="career-pathways reveal reveal-delay-1">
+          <div style="font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;font-weight:600;margin-bottom:20px">Step-by-step pathway</div>
+          <div class="pathway-item">
+            <div class="pathway-num">01</div>
+            <div>
+              <div class="pathway-title">Learn Python or JavaScript for free online</div>
+              <div class="pathway-desc">freeCodeCamp, CS50 (Harvard, free), The Odin Project. Build 3 portfolio projects before any application.</div>
+              <div class="pathway-duration">3 – 6 months self-study</div>
+            </div>
+          </div>
+          <div class="pathway-item">
+            <div class="pathway-num">02</div>
+            <div>
+              <div class="pathway-title">Apply: CS degree OR funded bootcamp</div>
+              <div class="pathway-desc">CS degrees at top European universities are free or low-cost for international students. Germany: €0 tuition. Scholarships abound.</div>
+              <div class="pathway-duration">Year 1 of University</div>
+            </div>
+          </div>
+          <div class="pathway-item">
+            <div class="pathway-num">03</div>
+            <div>
+              <div class="pathway-title">Contribute to open-source projects</div>
+              <div class="pathway-desc">GitHub is your global portfolio. Google Summer of Code and Outreachy pay students from developing countries to contribute.</div>
+              <div class="pathway-duration">Year 2 onward</div>
+            </div>
+          </div>
+          <div class="pathway-item">
+            <div class="pathway-num">04</div>
+            <div>
+              <div class="pathway-title">Land a remote internship or junior role</div>
+              <div class="pathway-desc">Remote companies hire globally. Toptal, Arc.dev, and We Work Remotely connect talented engineers with global employers regardless of location.</div>
+              <div class="pathway-duration">Year 3 – 4</div>
+            </div>
+          </div>
+          <div class="pathway-item">
+            <div class="pathway-num">05</div>
+            <div>
+              <div class="pathway-title">Senior engineer → tech lead → own startup</div>
+              <div class="pathway-desc">Software is one of very few fields where geography truly doesn't limit your ceiling. Engineers from every corner of the world run billion-dollar companies.</div>
+              <div class="pathway-duration">Year 5+</div>
+            </div>
+          </div>
+          <button class="btn-primary" style="margin-top:20px;justify-content:center;width:100%" onclick="scrollToMySpace('software')">Generate My Software Roadmap →</button>
+        </div>
+      </div>
+
+      <!-- DATA SCIENCE PANEL -->
+      <div class="career-panel" id="panel-data">
+        <div class="career-info-card reveal">
+          <div class="career-name">Data Scientist</div>
+          <div class="career-meta">
+            <span class="career-chip tag-p">AI Era Career</span>
+            <span class="career-chip tag-g">High Growth</span>
+            <span class="career-chip tag-c">Analytical</span>
+          </div>
+          <div class="career-desc">Data scientists extract meaning from large datasets to guide business, science, and government decisions. The most in-demand profession of the 2020s alongside AI engineering. Strong maths and curiosity are the core requirements — advanced degrees are common but not mandatory for entry-level roles.</div>
+          <div class="career-skills-title">Key skills to build</div>
+          <div class="career-skills">
+            <span class="career-skill">Python & R</span>
+            <span class="career-skill">Statistics & Probability</span>
+            <span class="career-skill">Machine Learning</span>
+            <span class="career-skill">SQL & Databases</span>
+            <span class="career-skill">Data Visualization</span>
+            <span class="career-skill">Pandas / NumPy</span>
+            <span class="career-skill">Communication</span>
+          </div>
+          <div class="salary-grid">
+            <div class="salary-card">
+              <div class="salary-region">Central Asia / MENA</div>
+              <div class="salary-range">$15K – $40K/yr</div>
+            </div>
+            <div class="salary-card">
+              <div class="salary-region">Germany / Netherlands</div>
+              <div class="salary-range">$60K – $110K/yr</div>
+            </div>
+            <div class="salary-card">
+              <div class="salary-region">United Kingdom</div>
+              <div class="salary-range">$55K – $100K/yr</div>
+            </div>
+            <div class="salary-card">
+              <div class="salary-region">United States</div>
+              <div class="salary-range">$90K – $180K/yr</div>
+            </div>
+          </div>
+        </div>
+        <div class="career-pathways reveal reveal-delay-1">
+          <div style="font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;font-weight:600;margin-bottom:20px">Step-by-step pathway</div>
+          <div class="pathway-item">
+            <div class="pathway-num">01</div>
+            <div>
+              <div class="pathway-title">Build a strong maths and stats foundation</div>
+              <div class="pathway-desc">Khan Academy, MIT OpenCourseWare — all free. Focus on probability, linear algebra, calculus. These are the true entry requirements.</div>
+              <div class="pathway-duration">Now → 6 months</div>
+            </div>
+          </div>
+          <div class="pathway-item">
+            <div class="pathway-num">02</div>
+            <div>
+              <div class="pathway-title">Study: Statistics, Maths, or Computer Science degree</div>
+              <div class="pathway-desc">Many European universities offer data science BSc programs. Erasmus Mundus funds international students in these programs.</div>
+              <div class="pathway-duration">Years 1 – 3</div>
+            </div>
+          </div>
+          <div class="pathway-item">
+            <div class="pathway-num">03</div>
+            <div>
+              <div class="pathway-title">Complete Kaggle competitions to build a portfolio</div>
+              <div class="pathway-desc">Kaggle is a free global data science competition platform. Top performers get direct recruiting attention from Google, Meta, and others.</div>
+              <div class="pathway-duration">Ongoing from Year 1</div>
+            </div>
+          </div>
+          <div class="pathway-item">
+            <div class="pathway-num">04</div>
+            <div>
+              <div class="pathway-title">Specialise in AI/ML, healthcare data, or climate data</div>
+              <div class="pathway-desc">Niche expertise multiplies your salary. Climate data scientists are one of the fastest-growing roles, funded by governments globally.</div>
+              <div class="pathway-duration">Masters / Year 3+</div>
+            </div>
+          </div>
+          <div class="pathway-item">
+            <div class="pathway-num">05</div>
+            <div>
+              <div class="pathway-title">First role: analyst, junior data scientist, ML engineer</div>
+              <div class="pathway-desc">Entry salaries in Europe start at $45–65K. Strong portfolio projects matter more than your university's prestige in this field.</div>
+              <div class="pathway-duration">Graduation</div>
+            </div>
+          </div>
+          <button class="btn-primary" style="margin-top:20px;justify-content:center;width:100%" onclick="scrollToMySpace('data')">Generate My Data Science Roadmap →</button>
+        </div>
+      </div>
+
+      <!-- LAW PANEL -->
+      <div class="career-panel" id="panel-law">
+        <div class="career-info-card reveal">
+          <div class="career-name">International Lawyer</div>
+          <div class="career-meta">
+            <span class="career-chip tag-o">Prestigious</span>
+            <span class="career-chip tag-p">Human Rights</span>
+            <span class="career-chip tag-g">Policy</span>
+          </div>
+          <div class="career-desc">International lawyers work at the intersection of policy, justice, and global affairs — at the UN, World Bank, international NGOs, and law firms. Rural-background students bring authenticity and lived experience that is increasingly valued in human rights law, development policy, and international arbitration.</div>
+          <div class="career-skills-title">Key skills to build</div>
+          <div class="career-skills">
+            <span class="career-skill">Critical Reasoning</span>
+            <span class="career-skill">Essay Writing</span>
+            <span class="career-skill">English Proficiency</span>
+            <span class="career-skill">Debate & Argumentation</span>
+            <span class="career-skill">Research Methods</span>
+            <span class="career-skill">Second Language</span>
+            <span class="career-skill">Model UN</span>
+          </div>
+          <div class="salary-grid">
+            <div class="salary-card">
+              <div class="salary-region">NGO / UN (entry)</div>
+              <div class="salary-range">$35K – $65K/yr</div>
+            </div>
+            <div class="salary-card">
+              <div class="salary-region">International Law Firm</div>
+              <div class="salary-range">$80K – $200K/yr</div>
+            </div>
+            <div class="salary-card">
+              <div class="salary-region">Government / Policy</div>
+              <div class="salary-range">$40K – $90K/yr</div>
+            </div>
+            <div class="salary-card">
+              <div class="salary-region">Senior Partner (15yrs)</div>
+              <div class="salary-range">$200K – $500K+/yr</div>
+            </div>
+          </div>
+        </div>
+        <div class="career-pathways reveal reveal-delay-1">
+          <div style="font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;font-weight:600;margin-bottom:20px">Step-by-step pathway</div>
+          <div class="pathway-item">
+            <div class="pathway-num">01</div>
+            <div>
+              <div class="pathway-title">Excel in humanities: history, literature, languages</div>
+              <div class="pathway-desc">Law schools prize analytical writing and argument over science grades. Debate clubs and Model UN are powerful extracurriculars.</div>
+              <div class="pathway-duration">School years</div>
+            </div>
+          </div>
+          <div class="pathway-item">
+            <div class="pathway-num">02</div>
+            <div>
+              <div class="pathway-title">Apply to fully-funded LLB or BA Law programs</div>
+              <div class="pathway-desc">Chevening, Commonwealth Scholarship, and OSF (Open Society Foundations) specifically target students from post-Soviet and developing regions.</div>
+              <div class="pathway-duration">Year 1 of University</div>
+            </div>
+          </div>
+          <div class="pathway-item">
+            <div class="pathway-num">03</div>
+            <div>
+              <div class="pathway-title">Intern at an NGO, embassy, or human rights org</div>
+              <div class="pathway-desc">UNHCR, Amnesty International, and local legal aid clinics offer experience that top law schools and employers value enormously.</div>
+              <div class="pathway-duration">Years 2 – 3</div>
+            </div>
+          </div>
+          <div class="pathway-item">
+            <div class="pathway-num">04</div>
+            <div>
+              <div class="pathway-title">Pursue a funded LLM in International Law</div>
+              <div class="pathway-desc">LSE, KU Leuven, Geneva Graduate Institute — all offer funded LLM tracks for students from developing countries. This opens international firm doors.</div>
+              <div class="pathway-duration">Postgraduate</div>
+            </div>
+          </div>
+          <div class="pathway-item">
+            <div class="pathway-num">05</div>
+            <div>
+              <div class="pathway-title">First role: legal associate, policy officer, or UN JPO</div>
+              <div class="pathway-desc">The UN Junior Professional Officer programme is specifically designed for developing-country nationals entering international careers in law and policy.</div>
+              <div class="pathway-duration">Graduation</div>
+            </div>
+          </div>
+          <button class="btn-primary" style="margin-top:20px;justify-content:center;width:100%" onclick="scrollToMySpace('law')">Generate My Law Roadmap →</button>
+        </div>
+      </div>
+
+      <!-- EDUCATION PANEL -->
+      <div class="career-panel" id="panel-education">
+        <div class="career-info-card reveal">
+          <div class="career-name">Education Leader</div>
+          <div class="career-meta">
+            <span class="career-chip tag-g">High Impact</span>
+            <span class="career-chip tag-c">Community</span>
+            <span class="career-chip tag-o">Mission-Driven</span>
+          </div>
+          <div class="career-desc">Education leaders — teachers, curriculum designers, edtech founders, school principals, and education policy makers — are the multipliers of human potential. Students from rural schools often become the most effective educators because they understand the real barriers their students face. Teach For All, IB teaching, and ed-policy roles pay competitively and offer global mobility.</div>
+          <div class="career-skills-title">Key skills to build</div>
+          <div class="career-skills">
+            <span class="career-skill">Communication</span>
+            <span class="career-skill">Curriculum Design</span>
+            <span class="career-skill">Leadership</span>
+            <span class="career-skill">Subject Expertise</span>
+            <span class="career-skill">Child Psychology basics</span>
+            <span class="career-skill">EdTech tools</span>
+            <span class="career-skill">Community organizing</span>
+          </div>
+          <div class="salary-grid">
+            <div class="salary-card">
+              <div class="salary-region">International IB School</div>
+              <div class="salary-range">$40K – $80K/yr</div>
+            </div>
+            <div class="salary-card">
+              <div class="salary-region">Education Policy (gov)</div>
+              <div class="salary-range">$35K – $70K/yr</div>
+            </div>
+            <div class="salary-card">
+              <div class="salary-region">EdTech Product Role</div>
+              <div class="salary-range">$50K – $120K/yr</div>
+            </div>
+            <div class="salary-card">
+              <div class="salary-region">School Principal (intl)</div>
+              <div class="salary-range">$70K – $150K/yr</div>
+            </div>
+          </div>
+        </div>
+        <div class="career-pathways reveal reveal-delay-1">
+          <div style="font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;font-weight:600;margin-bottom:20px">Step-by-step pathway</div>
+          <div class="pathway-item">
+            <div class="pathway-num">01</div>
+            <div>
+              <div class="pathway-title">Lead something at school: club, tutoring, event</div>
+              <div class="pathway-desc">Organising a tutoring group or founding a school club is your first leadership credential. Document it. It matters more than you think.</div>
+              <div class="pathway-duration">Now</div>
+            </div>
+          </div>
+          <div class="pathway-item">
+            <div class="pathway-num">02</div>
+            <div>
+              <div class="pathway-title">Apply for Education, Pedagogy, or Social Sciences degree</div>
+              <div class="pathway-desc">OSF, Aga Khan Foundation, and Soros Foundation specifically fund future education leaders from underserved communities.</div>
+              <div class="pathway-duration">University Year 1</div>
+            </div>
+          </div>
+          <div class="pathway-item">
+            <div class="pathway-num">03</div>
+            <div>
+              <div class="pathway-title">Join Teach For All or similar fellowship</div>
+              <div class="pathway-desc">Teach For Kazakhstan, Teach For All — competitive fellowships that fund teaching placements and fast-track you into education leadership.</div>
+              <div class="pathway-duration">Graduation or Year 3</div>
+            </div>
+          </div>
+          <div class="pathway-item">
+            <div class="pathway-num">04</div>
+            <div>
+              <div class="pathway-title">Build toward school leadership or EdTech</div>
+              <div class="pathway-desc">International school networks (ISS, SABIS, AKS) actively recruit teachers with strong academic backgrounds and leadership potential.</div>
+              <div class="pathway-duration">Years 3 – 7</div>
+            </div>
+          </div>
+          <div class="pathway-item">
+            <div class="pathway-num">05</div>
+            <div>
+              <div class="pathway-title">Policy, principal, or found your own school/edtech</div>
+              <div class="pathway-desc">The long game: shaping education systems. Many of the world's most impactful edtech founders came from rural, under-resourced backgrounds — exactly yours.</div>
+              <div class="pathway-duration">Year 10+</div>
+            </div>
+          </div>
+          <button class="btn-primary" style="margin-top:20px;justify-content:center;width:100%" onclick="scrollToMySpace('education')">Generate My Education Roadmap →</button>
+        </div>
+      </div>
+
+      <!-- BUSINESS PANEL -->
+      <div class="career-panel" id="panel-business">
+        <div class="career-info-card reveal">
+          <div class="career-name">Entrepreneur / Business</div>
+          <div class="career-meta">
+            <span class="career-chip tag-o">High Ceiling</span>
+            <span class="career-chip tag-p">Creative</span>
+            <span class="career-chip tag-c">Leadership</span>
+          </div>
+          <div class="career-desc">Entrepreneurs and business leaders create value, build organizations, and solve problems at scale. Rural backgrounds are a significant advantage — understanding resource constraints and local markets gives founders from underserved regions insights that urban founders miss. The global startup ecosystem now actively funds underrepresented founders.</div>
+          <div class="career-skills-title">Key skills to build</div>
+          <div class="career-skills">
+            <span class="career-skill">Financial Literacy</span>
+            <span class="career-skill">Sales & Persuasion</span>
+            <span class="career-skill">Market Research</span>
+            <span class="career-skill">Product Thinking</span>
+            <span class="career-skill">Leadership & Team</span>
+            <span class="career-skill">Excel / Modelling</span>
+            <span class="career-skill">Networking</span>
+          </div>
+          <div class="salary-grid">
+            <div class="salary-card">
+              <div class="salary-region">Graduate Management</div>
+              <div class="salary-range">$40K – $80K/yr</div>
+            </div>
+            <div class="salary-card">
+              <div class="salary-region">Startup Founder (funded)</div>
+              <div class="salary-range">$60K – unlimited</div>
+            </div>
+            <div class="salary-card">
+              <div class="salary-region">Consulting (McKinsey etc)</div>
+              <div class="salary-range">$90K – $200K/yr</div>
+            </div>
+            <div class="salary-card">
+              <div class="salary-region">MBA Graduate (top school)</div>
+              <div class="salary-range">$120K – $250K/yr</div>
+            </div>
+          </div>
+        </div>
+        <div class="career-pathways reveal reveal-delay-1">
+          <div style="font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;font-weight:600;margin-bottom:20px">Step-by-step pathway</div>
+          <div class="pathway-item">
+            <div class="pathway-num">01</div>
+            <div>
+              <div class="pathway-title">Start something small — anything — at school</div>
+              <div class="pathway-desc">A student business, a community project, a fundraiser. Entrepreneurship is a learnable skill. The earlier you start, the better. Failure is the curriculum.</div>
+              <div class="pathway-duration">Now</div>
+            </div>
+          </div>
+          <div class="pathway-item">
+            <div class="pathway-num">02</div>
+            <div>
+              <div class="pathway-title">Study Business, Economics, or a technical field</div>
+              <div class="pathway-desc">Warwick, LSE, HEC Paris, WU Vienna — all offer funded scholarships for students from developing countries. Business degrees open every door.</div>
+              <div class="pathway-duration">University Year 1 – 4</div>
+            </div>
+          </div>
+          <div class="pathway-item">
+            <div class="pathway-num">03</div>
+            <div>
+              <div class="pathway-title">Join a startup or intern at a consulting firm</div>
+              <div class="pathway-desc">Early startup experience is worth 3x a corporate grad job for developing entrepreneurial instincts. McKinsey and BCG actively recruit from developing-country universities.</div>
+              <div class="pathway-duration">Years 2 – 4</div>
+            </div>
+          </div>
+          <div class="pathway-item">
+            <div class="pathway-num">04</div>
+            <div>
+              <div class="pathway-title">Apply for entrepreneurship grants and accelerators</div>
+              <div class="pathway-desc">Seedstars, Antler, Y Combinator (yes, from anywhere), and regional programs like Astana Hub specifically fund emerging-market founders.</div>
+              <div class="pathway-duration">Any time</div>
+            </div>
+          </div>
+          <div class="pathway-item">
+            <div class="pathway-num">05</div>
+            <div>
+              <div class="pathway-title">Scale or pursue an MBA for senior leadership</div>
+              <div class="pathway-desc">Wharton, INSEAD, and LBS offer merit-based full scholarships. MBA grads from developing countries are aggressively recruited for emerging market roles.</div>
+              <div class="pathway-duration">Year 5 – 10</div>
+            </div>
+          </div>
+          <button class="btn-primary" style="margin-top:20px;justify-content:center;width:100%" onclick="scrollToMySpace('business')">Generate My Business Roadmap →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MINI CAREER QUIZ -->
+    <div class="quiz-card reveal" style="margin-top:48px">
+      <div style="text-align:center;margin-bottom:28px">
+        <div class="section-kicker o" style="display:inline-block;margin-bottom:8px">Quick Career Quiz</div>
+        <h3 class="section-title font-display" style="font-size:clamp(22px,3vw,32px);margin-bottom:8px">Not sure which path?<br>Let's find out in 3 questions.</h3>
+        <p style="font-size:14px;color:var(--muted)">Free — no account needed</p>
+      </div>
+
+      <div id="quizContainer">
+        <div class="quiz-progress" id="quizProgress">
+          <div class="quiz-progress-step current" id="qp1"></div>
+          <div class="quiz-progress-step" id="qp2"></div>
+          <div class="quiz-progress-step" id="qp3"></div>
+        </div>
+
+        <div id="q1" class="quiz-step">
+          <div class="quiz-question">What energizes you most after a long day of work?</div>
+          <div class="quiz-options">
+            <button class="quiz-option" onclick="selectQuiz(1,'science')"><span class="quiz-option-icon">🔬</span> Solving a complex scientific or analytical puzzle</button>
+            <button class="quiz-option" onclick="selectQuiz(1,'people')"><span class="quiz-option-icon">🤝</span> Having helped someone understand or achieve something</button>
+            <button class="quiz-option" onclick="selectQuiz(1,'build')"><span class="quiz-option-icon">⚒️</span> Building or creating something that didn't exist before</button>
+            <button class="quiz-option" onclick="selectQuiz(1,'advocate')"><span class="quiz-option-icon">⚖️</span> Making a case for what's right or fair</button>
+          </div>
+        </div>
+
+        <div id="q2" class="quiz-step" style="display:none">
+          <div class="quiz-question">What kind of impact do you most want your career to have?</div>
+          <div class="quiz-options">
+            <button class="quiz-option" onclick="selectQuiz(2,'health')"><span class="quiz-option-icon">🏥</span> Improving health outcomes and extending lives</button>
+            <button class="quiz-option" onclick="selectQuiz(2,'tech')"><span class="quiz-option-icon">💡</span> Driving technological innovation and digital access</button>
+            <button class="quiz-option" onclick="selectQuiz(2,'equity')"><span class="quiz-option-icon">🌍</span> Reducing inequality and expanding access to opportunity</button>
+            <button class="quiz-option" onclick="selectQuiz(2,'growth')"><span class="quiz-option-icon">📈</span> Creating economic value and new jobs</button>
+          </div>
+        </div>
+
+        <div id="q3" class="quiz-step" style="display:none">
+          <div class="quiz-question">How do you prefer to work?</div>
+          <div class="quiz-options">
+            <button class="quiz-option" onclick="selectQuiz(3,'solo')"><span class="quiz-option-icon">🧪</span> Deep focused solo research or coding</button>
+            <button class="quiz-option" onclick="selectQuiz(3,'team')"><span class="quiz-option-icon">👥</span> Collaborating and communicating with diverse teams</button>
+            <button class="quiz-option" onclick="selectQuiz(3,'lead')"><span class="quiz-option-icon">🗣️</span> Leading people and driving decisions</button>
+            <button class="quiz-option" onclick="selectQuiz(3,'flexible')"><span class="quiz-option-icon">🎯</span> Switching between strategy, execution, and creativity</button>
+          </div>
+        </div>
+
+        <div class="quiz-result" id="quizResult">
+          <div style="font-size:48px;margin-bottom:8px" id="resultEmoji">🎯</div>
+          <div class="quiz-result-career" id="resultCareer">Your Top Match: Biomedical Engineer</div>
+          <div class="quiz-result-sub" id="resultSub">Based on your answers, your strengths align beautifully with Biomedical Engineering — a field that combines analytical depth with real-world health impact.</div>
+          <button class="btn-primary" style="margin:0 auto;display:flex" onclick="scrollToMySpace()">Build My Personal Roadmap →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI DEMO -->
+<section class="section page-section" id="ai-demo" style="background:linear-gradient(180deg,var(--black),var(--deep),var(--black))">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-kicker p">Live AI Demo</div>
+      <h2 class="section-title font-display">Watch Project ER AI<br>change a life.</h2>
+      <p class="section-desc">Aisha, 16, from a small town in Kazakhstan discovers her future in real time.</p>
+    </div>
+
+    <div class="ai-demo-layout">
+      <div>
+        <div class="ai-terminal reveal">
+          <div class="ai-terminal-bar">
+            <div class="terminal-dot" style="background:#ff5f57"></div>
+            <div class="terminal-dot" style="background:#ffbd2e"></div>
+            <div class="terminal-dot" style="background:#28c840"></div>
+            <div class="terminal-title">Project ER AI — Career Intelligence</div>
+          </div>
+          <div class="ai-chat">
+            <div class="chat-msg user">
+              Hi, I'm Aisha, 16, from a small town in Kazakhstan. I love biology and solving problems but I have no idea what career to choose or whether I can even afford university.
+            </div>
+            <div class="chat-msg ai">
+              <div class="chat-ai-label">🌟 Project ER AI</div>
+              Aisha, I've just analyzed your profile across 5 dimensions: analytical thinking, scientific curiosity, problem-solving orientation, resilience, and communication style. The combination of biology passion + systematic problem-solving is rare and extremely valuable in the 2030s job market. You're a strong match for 3 high-growth career paths — and I've already found 12 funding opportunities that could cover your education completely.
+            </div>
+            <div class="chat-msg user">
+              12 scholarships?? I had no idea those existed for someone from my background.
+            </div>
+            <div class="chat-msg ai">
+              <div class="chat-ai-label">🌟 Project ER AI</div>
+              That's exactly why Project ER exists. Most students in your situation never discover these. I found: Aga Khan Foundation (full coverage), Bolashak National Program, 3 EU-funded STEM grants, Chevening for Central Asian students, and 6 more — totaling up to $240,000 in available funding. Your biology Olympiad result is a competitive advantage most applicants don't have. Let me build your application roadmap<span class="typing-cursor">|</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ai-results reveal reveal-delay-1">
+        <div class="results-title">Top career matches for Aisha</div>
+
+        <div class="match-card">
+          <div class="match-emoji">🧬</div>
+          <div class="match-info">
+            <div class="match-title">Biomedical Engineer</div>
+            <div class="match-sub">$85K–$140K/yr · Very high demand 2030</div>
+            <div class="match-bar"><div class="match-bar-fill" style="width:92%"></div></div>
+          </div>
+          <div class="match-score">92%</div>
+        </div>
+
+        <div class="match-card">
+          <div class="match-emoji">🔬</div>
+          <div class="match-info">
+            <div class="match-title">Genomics Data Scientist</div>
+            <div class="match-sub">$95K–$160K/yr · Emerging field</div>
+            <div class="match-bar"><div class="match-bar-fill" style="width:87%"></div></div>
+          </div>
+          <div class="match-score">87%</div>
+        </div>
+
+        <div class="match-card">
+          <div class="match-emoji">💊</div>
+          <div class="match-info">
+            <div class="match-title">Pharmaceutical Researcher</div>
+            <div class="match-sub">$75K–$120K/yr · Stable growth</div>
+            <div class="match-bar"><div class="match-bar-fill" style="width:81%"></div></div>
+          </div>
+          <div class="match-score">81%</div>
+        </div>
+
+        <div class="grant-box">
+          <div class="grant-label">Grant Radar — Live Results</div>
+          <div class="grant-title">12 scholarships found for Aisha</div>
+          <div class="grant-sub">Total funding available: up to <strong style="color:var(--green)">$240,000</strong> · Nearest deadline: 47 days</div>
+        </div>
+
+        <button class="btn-primary" style="width:100%;justify-content:center" onclick="document.getElementById('grants').scrollIntoView({behavior:'smooth'})">
+          See full grant list →
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JOURNEY -->
+<section class="section-sm page-section">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-kicker c">Student Journey</div>
+      <h2 class="section-title font-display">From lost to launched<br>in 7 steps.</h2>
+    </div>
+
+    <div class="journey-strip reveal">
+      <div class="journey-step">
+        <div class="step-num">01</div>
+        <div class="step-icon">🪪</div>
+        <div class="step-title">Profile Scan</div>
+        <div class="step-desc">AI maps personality, strengths, interests, and context in 8 minutes</div>
+      </div>
+      <div class="journey-step">
+        <div class="step-num">02</div>
+        <div class="step-icon">🧭</div>
+        <div class="step-title">Career Match</div>
+        <div class="step-desc">Top 5 careers ranked by fit, future demand, and salary range</div>
+      </div>
+      <div class="journey-step">
+        <div class="step-num">03</div>
+        <div class="step-icon">💰</div>
+        <div class="step-title">Grant Radar</div>
+        <div class="step-desc">Personalized scholarships surfaced with deadlines and match scores</div>
+      </div>
+      <div class="journey-step">
+        <div class="step-num">04</div>
+        <div class="step-icon">📁</div>
+        <div class="step-title">Portfolio Built</div>
+        <div class="step-desc">AI transforms school achievements into competitive professional CV</div>
+      </div>
+      <div class="journey-step">
+        <div class="step-num">05</div>
+        <div class="step-icon">🤝</div>
+        <div class="step-title">Mentor Matched</div>
+        <div class="step-desc">Connected with someone who walked the exact same path</div>
+      </div>
+      <div class="journey-step">
+        <div class="step-num">06</div>
+        <div class="step-icon">🗺️</div>
+        <div class="step-title">Roadmap Set</div>
+        <div class="step-desc">Personalized step-by-step plan with missions, XP, and milestones</div>
+      </div>
+      <div class="journey-step">
+        <div class="step-num">07</div>
+        <div class="step-icon">🚀</div>
+        <div class="step-title">Launch</div>
+        <div class="step-desc">First application submitted. Future unlocked. No looking back.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GRANT RADAR -->
+<section class="section page-section" id="grants" style="background:linear-gradient(180deg,var(--black),var(--deep),var(--black))">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-kicker g">Global Grant Radar</div>
+      <h2 class="section-title font-display">The world's hidden<br>funding, <span class="grad-text-2">found.</span></h2>
+      <p class="section-desc">Most students miss 90% of available funding. Project ER scans 40,000+ scholarships and matches them to your exact profile — automatically.</p>
+    </div>
+
+    <div class="grant-radar reveal">
+      <div class="grant-radar-header">
+        <div class="grant-radar-title" id="grantRadarTitle">Scholarships matched for you — Biology, Kazakhstan</div>
+        <div class="grant-count-badge">12 matches found</div>
+      </div>
+      <div class="grant-list">
+        <div class="grant-row">
+          <div>
+            <div class="grant-org">Aga Khan Foundation International Scholarship</div>
+            <div class="grant-detail">Full coverage · STEM fields · 54 eligible countries</div>
+          </div>
+          <div class="grant-match-pct">98% match</div>
+          <div>
+            <div class="grant-amount">$45,000/yr</div>
+            <div class="grant-deadline">Deadline: 47 days</div>
+          </div>
+        </div>
+        <div class="grant-row">
+          <div>
+            <div class="grant-org">Bolashak National Scholarship — Kazakhstan</div>
+            <div class="grant-detail">Government-funded · International universities · Full coverage</div>
+          </div>
+          <div class="grant-match-pct">96% match</div>
+          <div>
+            <div class="grant-amount">Full funding</div>
+            <div class="grant-deadline">Deadline: 83 days</div>
+          </div>
+        </div>
+        <div class="grant-row">
+          <div>
+            <div class="grant-org">EU Erasmus Mundus STEM Excellence Programme</div>
+            <div class="grant-detail">European universities · Biology &amp; Life Sciences track</div>
+          </div>
+          <div class="grant-match-pct">91% match</div>
+          <div>
+            <div class="grant-amount">€48,000</div>
+            <div class="grant-deadline">Deadline: 102 days</div>
+          </div>
+        </div>
+        <div class="grant-row">
+          <div>
+            <div class="grant-org">Chevening Scholarship — UK Government</div>
+            <div class="grant-detail">Masters programmes · Central Asia eligible · Full coverage</div>
+          </div>
+          <div class="grant-match-pct">88% match</div>
+          <div>
+            <div class="grant-amount">£38,000</div>
+            <div class="grant-deadline">Deadline: 127 days</div>
+          </div>
+        </div>
+        <div class="grant-row">
+          <div>
+            <div class="grant-org">DAAD Development-Related Postgraduate Courses</div>
+            <div class="grant-detail">Germany · Biomedical Sciences · Rural background priority</div>
+          </div>
+          <div class="grant-match-pct">85% match</div>
+          <div>
+            <div class="grant-amount">€12,000 + fees</div>
+            <div class="grant-deadline">Deadline: 155 days</div>
+          </div>
+        </div>
+        <div class="grant-row" onclick="expandGrantList(this)" style="cursor:pointer;background:rgba(34,211,238,0.04);border-top:1px solid rgba(34,211,238,0.1)">
+          <div>
+            <div class="grant-org">IAESTE International Internship Programme</div>
+            <div class="grant-detail">Science & Engineering · 80+ countries · Paid placement</div>
+          </div>
+          <div class="grant-match-pct">83% match</div>
+          <div>
+            <div class="grant-amount">$800–2,000/mo</div>
+            <div class="grant-deadline">Deadline: 178 days</div>
+          </div>
+        </div>
+        <div class="grant-row" onclick="expandGrantList(this)" style="cursor:pointer">
+          <div>
+            <div class="grant-org">Open Society Foundations — Central Asia</div>
+            <div class="grant-detail">Full scholarship · Social sciences · First-gen priority</div>
+          </div>
+          <div class="grant-match-pct">80% match</div>
+          <div>
+            <div class="grant-amount">$40,000</div>
+            <div class="grant-deadline">Deadline: 201 days</div>
+          </div>
+        </div>
+        <div class="grant-row" onclick="expandGrantList(this)" style="cursor:pointer">
+          <div>
+            <div class="grant-org">Swiss Government Excellence Scholarships</div>
+            <div class="grant-detail">Masters & PhD · All fields · Rural background valued</div>
+          </div>
+          <div class="grant-match-pct">77% match</div>
+          <div>
+            <div class="grant-amount">CHF 1,920/mo</div>
+            <div class="grant-deadline">Deadline: 214 days</div>
+          </div>
+        </div>
+        <div class="grant-row" onclick="expandGrantList(this)" style="cursor:pointer">
+          <div>
+            <div class="grant-org">Stipendium Hungaricum — Hungary</div>
+            <div class="grant-detail">Full BSc/MSc · Partner country eligible · All fields</div>
+          </div>
+          <div class="grant-match-pct">75% match</div>
+          <div>
+            <div class="grant-amount">Full funding</div>
+            <div class="grant-deadline">Deadline: 230 days</div>
+          </div>
+        </div>
+        <div class="grant-row" onclick="expandGrantList(this)" style="cursor:pointer">
+          <div>
+            <div class="grant-org">KAIST International Student Scholarship — Korea</div>
+            <div class="grant-detail">Full STEM tuition + stipend · English-taught</div>
+          </div>
+          <div class="grant-match-pct">73% match</div>
+          <div>
+            <div class="grant-amount">₩350,000/mo</div>
+            <div class="grant-deadline">Deadline: 245 days</div>
+          </div>
+        </div>
+        <div class="grant-row" onclick="expandGrantList(this)" style="cursor:pointer">
+          <div>
+            <div class="grant-org">ADB Japan Scholarship Program</div>
+            <div class="grant-detail">Postgraduate · Asia–Pacific · Development focus</div>
+          </div>
+          <div class="grant-match-pct">70% match</div>
+          <div>
+            <div class="grant-amount">Full coverage</div>
+            <div class="grant-deadline">Deadline: 260 days</div>
+          </div>
+        </div>
+        <div class="grant-row" style="background:rgba(74,222,128,0.04);border-top:1px solid rgba(74,222,128,0.12)">
+          <div style="font-size:13px;color:var(--green);grid-column:1/-1;text-align:center;padding:6px;font-weight:500">
+            ✓ All 12 scholarships shown — no account needed
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO BUILDER -->
+<section class="section page-section" id="portfolio">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-kicker p">Portfolio Forge</div>
+      <h2 class="section-title font-display">Your achievements,<br><span class="grad-text">repackaged.</span></h2>
+      <p class="section-desc">AI turns ordinary school experiences into extraordinary competitive portfolios. Try it below — enter any achievement and watch the transformation.</p>
+    </div>
+
+    <div class="portfolio-demo">
+      <div class="portfolio-input reveal">
+        <div style="font-size:13px;color:var(--muted);margin-bottom:20px;font-weight:300">Enter your achievement below — any Olympiad, club, volunteer work, or project.</div>
+        <div class="input-group">
+          <label class="input-label">Achievement</label>
+          <input class="input-field" id="achievementInput" type="text" placeholder="e.g. Won 2nd place in regional biology Olympiad" value="Won 2nd place at regional biology Olympiad, organized a school science club, helped elderly neighbors during COVID"/>
+        </div>
+        <div class="input-group">
+          <label class="input-label">Context</label>
+          <textarea class="input-field" id="contextInput" placeholder="Tell us more about yourself and your school...">I'm from a small town, public school, no special resources or tutors, did this completely on my own</textarea>
+        </div>
+        <div class="input-group">
+          <label class="input-label">Target</label>
+          <input class="input-field" id="targetInput" type="text" placeholder="e.g. University application, scholarship, internship" value="International university scholarship application"/>
+        </div>
+        <button class="generate-btn" onclick="generatePortfolioAI()">🌟 Generate with Project ER AI</button>
+      </div>
+
+      <div class="portfolio-output reveal reveal-delay-1">
+        <div class="portfolio-output-header">
+          <span style="width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block;box-shadow:0 0 8px rgba(74,222,128,0.6)"></span>
+          AI-Generated Portfolio Narrative
+        </div>
+        <div class="ai-output-text" id="portfolioOutput">
+          Demonstrated exceptional academic initiative by achieving 2nd place in the regional biology Olympiad through entirely self-directed study — without tutors, additional resources, or institutional support available to urban peers. This achievement reflects not only intellectual capability, but remarkable resilience and self-motivation in resource-constrained environments.<br><br>
+          Founded and led a school science club, developing organizational leadership, curriculum design, and peer mentorship skills that directly prepared students for competitive examinations.<br><br>
+          During the COVID-19 crisis, led an informal community care initiative supporting elderly neighbors — demonstrating civic responsibility, empathy under pressure, and real-world problem-solving beyond the classroom.
+          <br><br>
+          <em style="font-size:12px;color:var(--muted2)">Click "Generate" to transform your own achievements →</em>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COST SIMULATOR -->
+<section class="section page-section" id="simulator" style="background:linear-gradient(180deg,var(--black),var(--deep),var(--black))">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-kicker c">Life Cost Simulator</div>
+      <h2 class="section-title font-display">Know exactly what<br>you need.</h2>
+      <p class="section-desc">Real education and living costs across 120+ cities. Budget planning tools that show exactly how to fund your studies.</p>
+    </div>
+
+    <div class="simulator reveal">
+      <div class="sim-grid">
+        <div class="sim-controls">
+          <div style="font-size:13px;color:var(--muted);margin-bottom:8px;font-weight:300">Adjust parameters to see your budget</div>
+
+          <div class="slider-group">
+            <div class="slider-label">
+              <span>Tuition fees / year</span>
+              <span class="slider-value" id="tuitionVal">$8,000</span>
+            </div>
+            <input class="slider" type="range" min="0" max="50000" step="500" value="8000" oninput="updateSim()"/>
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-label">
+              <span>Monthly living costs</span>
+              <span class="slider-value" id="livingVal">$600</span>
+            </div>
+            <input class="slider" type="range" min="200" max="3000" step="50" value="600" oninput="updateSim()"/>
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-label">
+              <span>Duration (years)</span>
+              <span class="slider-value" id="durationVal">4 years</span>
+            </div>
+            <input class="slider" type="range" min="1" max="6" step="1" value="4" oninput="updateSim()"/>
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-label">
+              <span>Part-time income / month</span>
+              <span class="slider-value" id="incomeVal">$300</span>
+            </div>
+            <input class="slider" type="range" min="0" max="1500" step="50" value="300" oninput="updateSim()"/>
+          </div>
+
+          <div style="margin-top:8px;padding:16px;background:rgba(249,115,22,0.06);border:1px solid rgba(249,115,22,0.15);border-radius:10px">
+            <div style="font-size:11px;color:var(--orange);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;font-weight:600">Project ER tip</div>
+            <div style="font-size:13px;color:var(--muted)">Students matching your profile typically secure <strong style="color:var(--green)">$12,000–$35,000</strong> in grant funding. Add scholarship income to see your real gap.</div>
+          </div>
+        </div>
+
+        <div class="sim-results">
+          <div class="sim-result-card">
+            <div class="sim-result-label">Total education cost</div>
+            <div class="sim-result-value" id="totalCost" style="color:var(--orange)">$60,800</div>
+            <div class="sim-result-sub">Tuition + living expenses combined</div>
+          </div>
+          <div class="sim-result-card">
+            <div class="sim-result-label">Covered by work income</div>
+            <div class="sim-result-value" id="workIncome" style="color:var(--cyan)">$14,400</div>
+            <div class="sim-result-sub">Part-time earnings over full duration</div>
+            <div class="sim-progress"><div class="sim-progress-fill" id="workBar" style="width:24%;background:linear-gradient(90deg,var(--cyan),var(--green))"></div></div>
+          </div>
+          <div class="sim-result-card">
+            <div class="sim-result-label">Funding gap to bridge</div>
+            <div class="sim-result-value" id="fundingGap" style="color:var(--purple)">$46,400</div>
+            <div class="sim-result-sub">What scholarships and grants need to cover</div>
+            <div class="sim-progress"><div class="sim-progress-fill" id="gapBar" style="width:76%;background:linear-gradient(90deg,var(--purple),var(--orange))"></div></div>
+          </div>
+          <button class="btn-primary" style="justify-content:center" onclick="document.getElementById('grants').scrollIntoView({behavior:'smooth'})">
+            Find scholarships to cover this gap →
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GAMIFICATION -->
+<section class="section page-section" id="gamification">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-kicker o">The Forge — Gamification</div>
+      <h2 class="section-title font-display">Level up your<br>real life.</h2>
+      <p class="section-desc">Every action earns XP. Every milestone unlocks new opportunities. Progress feels like a game, but the rewards are real.</p>
+    </div>
+
+    <div class="levels-strip reveal" id="levelsStrip">
+      <div class="level-card">
+        <div class="level-emoji">🌱</div>
+        <div class="level-name">Seedling</div>
+        <div class="level-xp">0 – 500 XP</div>
+        <div class="xp-bar"><div class="xp-fill" style="width:100%"></div></div>
+      </div>
+      <div class="level-card">
+        <div class="level-emoji">🔍</div>
+        <div class="level-name">Explorer</div>
+        <div class="level-xp">500 – 1,500 XP</div>
+        <div class="xp-bar"><div class="xp-fill" style="width:80%"></div></div>
+      </div>
+      <div class="level-card active">
+        <div class="level-emoji">📚</div>
+        <div class="level-name">Scholar</div>
+        <div class="level-xp">1,500 – 3,000 XP</div>
+        <div class="xp-bar"><div class="xp-fill" style="width:55%"></div></div>
+      </div>
+      <div class="level-card">
+        <div class="level-emoji">🤝</div>
+        <div class="level-name">Networker</div>
+        <div class="level-xp">3,000 – 5,000 XP</div>
+        <div class="xp-bar"><div class="xp-fill" style="width:30%"></div></div>
+      </div>
+      <div class="level-card">
+        <div class="level-emoji">🌟</div>
+        <div class="level-name">Trailblazer</div>
+        <div class="level-xp">5,000 – 8,000 XP</div>
+        <div class="xp-bar"><div class="xp-fill" style="width:15%"></div></div>
+      </div>
+      <div class="level-card">
+        <div class="level-emoji">🏆</div>
+        <div class="level-name">Champion</div>
+        <div class="level-xp">8,000 – 12,000 XP</div>
+        <div class="xp-bar"><div class="xp-fill" style="width:5%"></div></div>
+      </div>
+      <div class="level-card">
+        <div class="level-emoji">🌟</div>
+        <div class="level-name">Forgemaster</div>
+        <div class="level-xp">12,000+ XP</div>
+        <div class="xp-bar"><div class="xp-fill" style="width:2%"></div></div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px" class="reveal">
+      <div style="padding:16px 18px;background:var(--card);border:1px solid var(--border);border-radius:12px;cursor:pointer;transition:border-color 0.2s,background 0.2s" onclick="earnXP(this,'career quiz',150,'t1')" onmouseover="this.style.borderColor='rgba(249,115,22,0.3)'" onmouseout="this.style.borderColor=''">
+        <div style="font-size:20px;margin-bottom:8px">📝</div>
+        <div style="font-size:13px;font-weight:500;margin-bottom:4px">Complete career quiz</div>
+        <div style="font-size:12px;color:var(--muted)">+150 XP · Unlocks: Career Roadmap</div>
+      </div>
+      <div style="padding:16px 18px;background:var(--card);border:1px solid var(--border);border-radius:12px;cursor:pointer;transition:border-color 0.2s,background 0.2s" onclick="earnXP(this,'scholarship application',300,'t5')" onmouseover="this.style.borderColor='rgba(249,115,22,0.3)'" onmouseout="this.style.borderColor=''">
+        <div style="font-size:20px;margin-bottom:8px">💌</div>
+        <div style="font-size:13px;font-weight:500;margin-bottom:4px">Send first scholarship application</div>
+        <div style="font-size:12px;color:var(--muted)">+300 XP · Unlocks: Scholar Badge</div>
+      </div>
+      <div style="padding:16px 18px;background:var(--card);border:1px solid var(--border);border-radius:12px;cursor:pointer;transition:border-color 0.2s,background 0.2s" onclick="earnXP(this,'mentor session',250,'t7')" onmouseover="this.style.borderColor='rgba(249,115,22,0.3)'" onmouseout="this.style.borderColor=''">
+        <div style="font-size:20px;margin-bottom:8px">🧑‍🏫</div>
+        <div style="font-size:13px;font-weight:500;margin-bottom:4px">Book first mentor session</div>
+        <div style="font-size:12px;color:var(--muted)">+250 XP · Unlocks: Mentor Network</div>
+      </div>
+      <div style="padding:16px 18px;background:var(--card);border:1px solid var(--border);border-radius:12px;cursor:pointer;transition:border-color 0.2s,background 0.2s" onclick="earnXP(this,'university application',500,'t8')" onmouseover="this.style.borderColor='rgba(249,115,22,0.3)'" onmouseout="this.style.borderColor=''">
+        <div style="font-size:20px;margin-bottom:8px">🏫</div>
+        <div style="font-size:13px;font-weight:500;margin-bottom:4px">Submit university application</div>
+        <div style="font-size:12px;color:var(--muted)">+500 XP · Unlocks: Trailblazer Status</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENTORS -->
+<section class="section page-section" id="mentors" style="background:linear-gradient(180deg,var(--black),var(--deep),var(--black))">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-kicker p">Mentor Match</div>
+      <h2 class="section-title font-display">Guided by people<br>who started like you.</h2>
+      <p class="section-desc">Not polished LinkedIn profiles. Real people from similar backgrounds who made it — and want to help you do the same.</p>
+    </div>
+
+    <div class="mentor-grid">
+      <div class="mentor-card reveal">
+        <div class="mentor-avatar">AK</div>
+        <div class="mentor-name">Aigerim Kassymova</div>
+        <div class="mentor-role">PhD Candidate, ETH Zurich · From Shymkent, Kazakhstan</div>
+        <div class="mentor-story">"I was exactly where you are. Rural school, no connections, no idea how to apply abroad. Project ER helped me find the Bolashak grant and build my portfolio. Now I'm doing biomedical research in Switzerland."</div>
+        <span class="mentor-tag">Biology</span>
+        <span class="mentor-tag">Scholarships</span>
+        <span class="mentor-tag">Switzerland</span>
+        <br>
+        <button class="mentor-btn" onclick="openMentorChat('Aigerim Kassymova','PhD Candidate, ETH Zurich','Biology · Scholarships · Switzerland')">Message Aigerim →</button>
+      </div>
+
+      <div class="mentor-card reveal reveal-delay-1">
+        <div class="mentor-avatar" style="background:linear-gradient(135deg,var(--cyan),var(--purple))">MT</div>
+        <div class="mentor-name">Malik Traoré</div>
+        <div class="mentor-role">Software Engineer, Google · From Bamako, Mali</div>
+        <div class="mentor-story">"I had no laptop, shared phone with my family, and still got into a coding bootcamp through a grant I found on Project ER. Today I work at Google. Your circumstances don't define your ceiling."</div>
+        <span class="mentor-tag">Tech</span>
+        <span class="mentor-tag">Coding</span>
+        <span class="mentor-tag">Africa</span>
+        <br>
+        <button class="mentor-btn" onclick="openMentorChat('Malik Traoré','Software Engineer, Google','Tech · Coding · Africa')">Message Malik →</button>
+      </div>
+
+      <div class="mentor-card reveal reveal-delay-2">
+        <div class="mentor-avatar" style="background:linear-gradient(135deg,var(--green),var(--cyan))">PP</div>
+        <div class="mentor-name">Priya Patel</div>
+        <div class="mentor-role">Medical Student, UCL · From rural Gujarat, India</div>
+        <div class="mentor-story">"First in my village to go abroad for university. My school had no career counselor, no internet lab. Project ER was my entire support system — AI guidance plus a mentor who understood my world."</div>
+        <span class="mentor-tag">Medicine</span>
+        <span class="mentor-tag">UK</span>
+        <span class="mentor-tag">First-gen</span>
+        <br>
+        <button class="mentor-btn" onclick="openMentorChat('Priya Patel','Medical Student, UCL','Medicine · UK · First-gen')">Message Priya →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section class="section page-section" id="impact">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-kicker o">Social Impact</div>
+      <h2 class="section-title font-display">Not just an app.<br><span class="grad-text">Infrastructure for equity.</span></h2>
+      <p class="section-desc">Project ER is directly aligned with UN SDG 4 — Quality Education for All — with measurable, verifiable impact metrics.</p>
+    </div>
+
+    <div class="impact-grid">
+      <div class="impact-card reveal">
+        <div class="impact-card-line" style="background:linear-gradient(90deg,var(--orange),transparent)"></div>
+        <div class="impact-num" style="color:var(--orange)">265M</div>
+        <div class="impact-label">Target students</div>
+        <div class="impact-desc">Underserved students in Central Asia, South Asia, Africa, and Eastern Europe currently with no access to quality career guidance.</div>
+      </div>
+      <div class="impact-card reveal reveal-delay-1">
+        <div class="impact-card-line" style="background:linear-gradient(90deg,var(--purple),transparent)"></div>
+        <div class="impact-num" style="color:var(--purple)">40K+</div>
+        <div class="impact-label">Hidden scholarships</div>
+        <div class="impact-desc">Most students never discover the majority of funding opportunities. Project ER surfaces all of them, personalized to each student's profile and region.</div>
+      </div>
+      <div class="impact-card reveal reveal-delay-2">
+        <div class="impact-card-line" style="background:linear-gradient(90deg,var(--cyan),transparent)"></div>
+        <div class="impact-num" style="color:var(--cyan)">3×</div>
+        <div class="impact-label">Higher admission rates</div>
+        <div class="impact-desc">Students with structured career roadmaps and AI-built portfolios are 3x more likely to gain admission to competitive institutions.</div>
+      </div>
+      <div class="impact-card reveal reveal-delay-3">
+        <div class="impact-card-line" style="background:linear-gradient(90deg,var(--green),transparent)"></div>
+        <div class="impact-num" style="color:var(--green)">UN SDG 4</div>
+        <div class="impact-label">Aligned mission</div>
+        <div class="impact-desc">Directly advances the UN Sustainable Development Goal 4 — with data-verified impact reports for funders, investors, and government partners.</div>
+      </div>
+    </div>
+
+    <div class="before-after" style="margin-top:32px">
+      <div class="ba-card reveal">
+        <div class="ba-header">❌ Without Project ER</div>
+        <div class="ba-list">
+          <div class="ba-item bad"><span class="ba-icon">✗</span>Career chosen from myths and social pressure</div>
+          <div class="ba-item bad"><span class="ba-icon">✗</span>Scholarships missed due to lack of awareness</div>
+          <div class="ba-item bad"><span class="ba-icon">✗</span>No mentor, no network, no competitive portfolio</div>
+          <div class="ba-item bad"><span class="ba-icon">✗</span>Talent wasted because of geography and zip code</div>
+          <div class="ba-item bad"><span class="ba-icon">✗</span>University cost feels impossible and unknown</div>
+        </div>
+      </div>
+      <div class="ba-card reveal reveal-delay-1">
+        <div class="ba-header">✓ With Project ER</div>
+        <div class="ba-list">
+          <div class="ba-item good"><span class="ba-icon">✓</span>Data-driven career path matched to real strengths</div>
+          <div class="ba-item good"><span class="ba-icon">✓</span>Personalized scholarships surfaced automatically</div>
+          <div class="ba-item good"><span class="ba-icon">✓</span>AI-built portfolio + real mentor connections</div>
+          <div class="ba-item good"><span class="ba-icon">✓</span>Equal opportunity regardless of geography</div>
+          <div class="ba-item good"><span class="ba-icon">✓</span>Clear budget plan with exact funding roadmap</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="section page-section" id="roadmap" style="background:linear-gradient(180deg,var(--black),var(--deep),var(--black))">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-kicker g">MVP Roadmap</div>
+      <h2 class="section-title font-display">From MVP to<br>global unicorn.</h2>
+      <p class="section-desc">A realistic, phased plan from pilot launch to international scale — built to win competitions and attract institutional partners.</p>
+    </div>
+
+    <div class="roadmap reveal">
+      <div class="phase">
+        <div class="phase-label mvp"><div class="phase-dot"></div>MVP · Q1 2026</div>
+        <div>
+          <div class="phase-title">Core loop: Profile → Career → Scholarships</div>
+          <div class="phase-pills">
+            <span class="phase-pill">AI career quiz</span>
+            <span class="phase-pill">Grant database (5K entries)</span>
+            <span class="phase-pill">Basic portfolio builder</span>
+            <span class="phase-pill">Offline PWA</span>
+            <span class="phase-pill">Kazakhstan + Kyrgyzstan pilot</span>
+            <span class="phase-pill">3 languages</span>
+          </div>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-label growth"><div class="phase-dot"></div>Growth · Q3 2026</div>
+        <div>
+          <div class="phase-title">Community, mentors, cost simulator + first B2B</div>
+          <div class="phase-pills">
+            <span class="phase-pill">Mentor Match system</span>
+            <span class="phase-pill">Life Cost Simulator</span>
+            <span class="phase-pill">Gamification engine</span>
+            <span class="phase-pill">5 languages</span>
+            <span class="phase-pill">Central Asia expansion</span>
+            <span class="phase-pill">First school partnerships</span>
+          </div>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-label scale"><div class="phase-dot"></div>Scale · Q1 2026</div>
+        <div>
+          <div class="phase-title">Institutional partnerships + B2G revenue</div>
+          <div class="phase-pills">
+            <span class="phase-pill">School/NGO API</span>
+            <span class="phase-pill">University partnerships</span>
+            <span class="phase-pill">Government integrations</span>
+            <span class="phase-pill">Africa + South Asia</span>
+            <span class="phase-pill">10 languages</span>
+            <span class="phase-pill">Series A fundraise</span>
+          </div>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-label unicorn"><div class="phase-dot"></div>Unicorn · 2027+</div>
+        <div>
+          <div class="phase-title">Global EdTech infrastructure layer</div>
+          <div class="phase-pills">
+            <span class="phase-pill">50+ countries</span>
+            <span class="phase-pill">AI career prediction v3</span>
+            <span class="phase-pill">Employer marketplace</span>
+            <span class="phase-pill">50M+ students</span>
+            <span class="phase-pill">$1B+ valuation path</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px" class="reveal">
+      <div style="font-size:14px;font-weight:500;margin-bottom:16px;color:var(--muted)">Why Project ER becomes a unicorn</div>
+      <div class="unicorn-grid">
+        <div class="unicorn-card"><div class="unicorn-tag" style="color:var(--orange)">Network Effects</div><div class="unicorn-text">More mentors → better matches → more students → more mentors. Viral loop built into the core product architecture.</div></div>
+        <div class="unicorn-card"><div class="unicorn-tag" style="color:var(--purple)">Data Moat</div><div class="unicorn-text">The world's largest dataset of student-to-career-outcome paths. Irreplaceable competitive advantage that compounds every year.</div></div>
+        <div class="unicorn-card"><div class="unicorn-tag" style="color:var(--cyan)">B2G Revenue</div><div class="unicorn-text">Governments pay for population-level career intelligence. Kazakhstan, Uzbekistan, Rwanda — all have dedicated EdTech budget lines.</div></div>
+        <div class="unicorn-card"><div class="unicorn-tag" style="color:var(--green)">Defensible Mission</div><div class="unicorn-text">UNESCO, UNICEF, and World Bank are active funders of exactly this platform type. Non-dilutive grants protect the mission.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section page-section" id="pricing">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-kicker c">Monetization</div>
+      <h2 class="section-title font-display">Three revenue streams.<br>One aligned model.</h2>
+      <p class="section-desc">Built so that commercial success and social impact reinforce each other — not compete.</p>
+    </div>
+
+    <div class="bento reveal">
+      <div class="bento-card featured">
+        <div class="plan-name">Students — Always Free</div>
+        <div class="plan-price grad-text">$0</div>
+        <div class="plan-note">Every core feature. Forever. No credit card ever.</div>
+        <ul class="plan-features">
+          <li class="plan-feature">Full AI career analysis & guidance hub</li>
+          <li class="plan-feature">Career pathways for 6+ fields with roadmaps</li>
+          <li class="plan-feature">Grant discovery (top 20 matches)</li>
+          <li class="plan-feature">Basic portfolio builder</li>
+          <li class="plan-feature">Offline access — works everywhere</li>
+          <li class="plan-feature">1 mentor connection per month</li>
+          <li class="plan-feature">Quick career quiz & match score</li>
+        </ul>
+        <hr class="plan-divider"/>
+        <div class="plan-name">Project ER Pro — Optional Upgrade</div>
+        <div class="plan-price" style="font-size:28px">$4<span style="font-size:14px;font-weight:400;color:var(--muted)">/month</span></div>
+        <div class="plan-note">PPP-adjusted pricing · Students in need: apply for free access</div>
+        <ul class="plan-features">
+          <li class="plan-feature">Unlimited grant radar (all 40K+)</li>
+          <li class="plan-feature">AI portfolio narrative writer (unlimited)</li>
+          <li class="plan-feature">Full cost simulator (120+ cities)</li>
+          <li class="plan-feature">Unlimited mentor connections</li>
+          <li class="plan-feature">Application deadline tracking</li>
+        </ul>
+        <button class="btn-primary" style="width:100%;margin-top:24px;justify-content:center" onclick="scrollToMySpace()">Start My Profile — It's Free →</button>
+      </div>
+
+      <div class="bento-card">
+        <div class="plan-name">Schools &amp; NGOs — B2B</div>
+        <div class="plan-price" style="font-size:28px">$299<span style="font-size:13px;font-weight:400;color:var(--muted)">/year</span></div>
+        <div class="plan-note">Per institution · Unlimited students</div>
+        <ul class="plan-features">
+          <li class="plan-feature">Admin dashboard &amp; analytics</li>
+          <li class="plan-feature">Progress tracking per student</li>
+          <li class="plan-feature">Custom career roadmaps</li>
+          <li class="plan-feature">Bulk mentor matching</li>
+        </ul>
+      </div>
+
+      <div class="bento-card">
+        <div class="plan-name">Governments — B2G</div>
+        <div class="plan-price" style="font-size:28px">Custom</div>
+        <div class="plan-note">National-level licensing</div>
+        <ul class="plan-features">
+          <li class="plan-feature">Population-level career data</li>
+          <li class="plan-feature">Workforce planning API</li>
+          <li class="plan-feature">White-label option available</li>
+          <li class="plan-feature">Government SLA &amp; support</li>
+        </ul>
+      </div>
+
+      <div class="bento-card wide">
+        <div class="plan-name" style="margin-bottom:20px">Additional revenue streams</div>
+        <div class="revenue-grid">
+          <div>
+            <div class="rev-item-title">University partnerships</div>
+            <div class="rev-item-text">Universities pay to appear in matched recommendations and recruit high-potential students directly. Commission per enrolled student creates recurring revenue.</div>
+          </div>
+          <div>
+            <div class="rev-item-title">Grant fund partnerships</div>
+            <div class="rev-item-text">Foundations pay Project ER to distribute their grants to the right candidates. Better match quality → higher grant success rates → long-term partnerships.</div>
+          </div>
+          <div>
+            <div class="rev-item-title">Impact investment &amp; grants</div>
+            <div class="rev-item-text">Non-dilutive funding from UNESCO, World Bank EdTech Fund, and regional development banks to expand in underserved markets without equity cost.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MY PERSONAL SPACE -->
+<section class="section page-section" id="my-space" style="background:linear-gradient(180deg,var(--deep),var(--black),var(--deep))">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-kicker o">✦ Personal Space</div>
+      <h2 class="section-title font-display">Your portfolio.<br><span class="grad-text">Your future.</span></h2>
+      <p class="section-desc">Enter your grades and achievements. Our AI instantly analyzes your portfolio strength and matches you with universities and scholarships worldwide.</p>
+    </div>
+
+    <!-- TABS -->
+    <div class="myspace-tabs reveal" style="margin-top:32px">
+      <button class="myspace-tab active" onclick="switchMySpace('grades')">📊 Grades</button>
+      <button class="myspace-tab" onclick="switchMySpace('achievements')">🏆 Achievements</button>
+      <button class="myspace-tab" onclick="switchMySpace('analysis')">🧠 Portfolio Score</button>
+      <button class="myspace-tab" onclick="switchMySpace('universities')">🎓 University Matches</button>
+      <button class="myspace-tab" onclick="switchMySpace('tracker')">✅ Progress Tracker</button>
+    </div>
+
+    <!-- PANEL: GRADES -->
+    <div class="myspace-panel active reveal" id="ms-grades">
+      <div class="myspace-hero">
+        <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;margin-bottom:6px">Enter your grades</div>
+        <div style="font-size:13px;color:var(--muted);margin-bottom:24px">Add your scores across subjects. We accept any grading scale — GPA, percentage, or local system.</div>
+        <div class="grades-grid" id="gradesGrid">
+          <div class="grade-item">
+            <label>Mathematics</label>
+            <input class="grade-input" type="number" id="g-math" min="0" max="100" placeholder="—" oninput="updateGradeSummary()"/>
+            <div class="grade-scale">0–100 or GPA</div>
+          </div>
+          <div class="grade-item">
+            <label>Physics</label>
+            <input class="grade-input" type="number" id="g-physics" min="0" max="100" placeholder="—" oninput="updateGradeSummary()"/>
+            <div class="grade-scale">0–100 or GPA</div>
+          </div>
+          <div class="grade-item">
+            <label>Biology</label>
+            <input class="grade-input" type="number" id="g-biology" min="0" max="100" placeholder="—" oninput="updateGradeSummary()"/>
+            <div class="grade-scale">0–100 or GPA</div>
+          </div>
+          <div class="grade-item">
+            <label>Chemistry</label>
+            <input class="grade-input" type="number" id="g-chemistry" min="0" max="100" placeholder="—" oninput="updateGradeSummary()"/>
+            <div class="grade-scale">0–100 or GPA</div>
+          </div>
+          <div class="grade-item">
+            <label>English / Language</label>
+            <input class="grade-input" type="number" id="g-english" min="0" max="100" placeholder="—" oninput="updateGradeSummary()"/>
+            <div class="grade-scale">0–100 or GPA</div>
+          </div>
+          <div class="grade-item">
+            <label>History / Humanities</label>
+            <input class="grade-input" type="number" id="g-history" min="0" max="100" placeholder="—" oninput="updateGradeSummary()"/>
+            <div class="grade-scale">0–100 or GPA</div>
+          </div>
+          <div class="grade-item">
+            <label>Computer Science</label>
+            <input class="grade-input" type="number" id="g-cs" min="0" max="100" placeholder="—" oninput="updateGradeSummary()"/>
+            <div class="grade-scale">0–100 or GPA</div>
+          </div>
+          <div class="grade-item">
+            <label>Art / Music / PE</label>
+            <input class="grade-input" type="number" id="g-arts" min="0" max="100" placeholder="—" oninput="updateGradeSummary()"/>
+            <div class="grade-scale">0–100 or GPA</div>
+          </div>
+        </div>
+        <div id="gradeSummaryBar" style="display:none;padding:16px;background:rgba(249,115,22,0.06);border:1px solid rgba(249,115,22,0.2);border-radius:10px;margin-bottom:16px">
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
+            <div>
+              <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:2px">Academic Average</div>
+              <div style="font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:var(--orange)" id="gradeAvg">—</div>
+            </div>
+            <div>
+              <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:2px">Strongest Subject</div>
+              <div style="font-size:15px;font-weight:600;color:var(--green)" id="strongestSubj">—</div>
+            </div>
+            <div>
+              <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:2px">Academic Tier</div>
+              <div style="font-size:15px;font-weight:600;color:var(--purple)" id="gradesTier">—</div>
+            </div>
+          </div>
+        </div>
+        <button class="analyze-btn" onclick="switchMySpace('achievements')">Next: Add Achievements →</button>
+      </div>
+    </div>
+
+    <!-- PANEL: ACHIEVEMENTS -->
+    <div class="myspace-panel" id="ms-achievements">
+      <div class="myspace-hero">
+        <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;margin-bottom:6px">Your achievements & activities</div>
+        <div style="font-size:13px;color:var(--muted);margin-bottom:20px">Olympiads, clubs, volunteer work, projects, competitions — everything counts.</div>
+        <div class="achievement-list" id="achievementList">
+          <div class="achievement-row">
+            <button class="achievement-emoji-picker" onclick="cycleEmoji(this)" title="Click to change">🏅</button>
+            <input class="achievement-text" type="text" placeholder="e.g. 2nd place in Regional Biology Olympiad" value="2nd place, Regional Biology Olympiad"/>
+            <span class="achievement-type">Academic</span>
+          </div>
+          <div class="achievement-row">
+            <button class="achievement-emoji-picker" onclick="cycleEmoji(this)" title="Click to change">👥</button>
+            <input class="achievement-text" type="text" placeholder="e.g. Founded school science club" value="Founded and led school science club (30 members)"/>
+            <span class="achievement-type">Leadership</span>
+          </div>
+          <div class="achievement-row">
+            <button class="achievement-emoji-picker" onclick="cycleEmoji(this)" title="Click to change">🤝</button>
+            <input class="achievement-text" type="text" placeholder="e.g. Volunteered at local shelter" value="Community care network for elderly during COVID-19"/>
+            <span class="achievement-type">Community</span>
+          </div>
+        </div>
+        <button class="add-achievement-btn" onclick="addAchievement()">＋ Add another achievement</button>
+        <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="analyze-btn" onclick="runPortfolioAnalysis()" id="analyzeBtn">
+            <span id="analyzeBtnIcon">🧠</span>
+            <span id="analyzeBtnText">Analyze My Portfolio</span>
+          </button>
+          <button class="btn-ghost" onclick="switchMySpace('grades')" style="font-size:14px">← Back to Grades</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL: PORTFOLIO ANALYSIS -->
+    <div class="myspace-panel" id="ms-analysis">
+      <div style="display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;margin-bottom:20px">
+        <div class="score-ring-wrap">
+          <div class="score-ring">
+            <svg width="140" height="140" viewBox="0 0 140 140">
+              <circle class="score-ring-bg" cx="70" cy="70" r="60"/>
+              <circle class="score-ring-fill" id="scoreRingFill" cx="70" cy="70" r="60" stroke="url(#scoreGrad)" stroke-dashoffset="376"/>
+              <defs>
+                <linearGradient id="scoreGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#f97316"/>
+                  <stop offset="100%" stop-color="#a855f7"/>
+                </linearGradient>
+              </defs>
+            </svg>
+            <div class="score-center">
+              <div class="score-num" id="portfolioScoreNum" style="background:linear-gradient(90deg,var(--orange),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">—</div>
+              <div class="score-label">Portfolio</div>
+            </div>
+          </div>
+          <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;text-align:center" id="portfolioTierLabel">—</div>
+          <div style="font-size:12px;color:var(--muted);text-align:center;margin-top:4px" id="portfolioTierDesc">Run analysis to see your score</div>
+        </div>
+        <div>
+          <div style="font-family:'Syne',sans-serif;font-size:17px;font-weight:700;margin-bottom:16px">Score Breakdown</div>
+          <div class="score-breakdown">
+            <div class="score-bar-row">
+              <div class="score-bar-label">Academic Grades</div>
+              <div class="score-bar-track"><div class="score-bar-fill" id="bar-grades" style="width:0%;background:linear-gradient(90deg,var(--orange),#fb923c)"></div></div>
+              <div class="score-bar-val" id="val-grades" style="color:var(--orange)">0</div>
+            </div>
+            <div class="score-bar-row">
+              <div class="score-bar-label">Achievements</div>
+              <div class="score-bar-track"><div class="score-bar-fill" id="bar-ach" style="width:0%;background:linear-gradient(90deg,var(--purple),var(--cyan))"></div></div>
+              <div class="score-bar-val" id="val-ach" style="color:var(--purple)">0</div>
+            </div>
+            <div class="score-bar-row">
+              <div class="score-bar-label">Leadership</div>
+              <div class="score-bar-track"><div class="score-bar-fill" id="bar-lead" style="width:0%;background:linear-gradient(90deg,var(--cyan),var(--green))"></div></div>
+              <div class="score-bar-val" id="val-lead" style="color:var(--cyan)">0</div>
+            </div>
+            <div class="score-bar-row">
+              <div class="score-bar-label">Community Impact</div>
+              <div class="score-bar-track"><div class="score-bar-fill" id="bar-comm" style="width:0%;background:linear-gradient(90deg,var(--green),#86efac)"></div></div>
+              <div class="score-bar-val" id="val-comm" style="color:var(--green)">0</div>
+            </div>
+            <div class="score-bar-row">
+              <div class="score-bar-label">Profile Diversity</div>
+              <div class="score-bar-track"><div class="score-bar-fill" id="bar-div" style="width:0%;background:linear-gradient(90deg,#f472b6,var(--purple))"></div></div>
+              <div class="score-bar-val" id="val-div" style="color:#f472b6">0</div>
+            </div>
+          </div>
+          <div id="analysisNarrative" style="margin-top:20px;padding:16px;background:rgba(168,85,247,0.06);border:1px solid rgba(168,85,247,0.15);border-radius:10px;font-size:13px;color:var(--muted);line-height:1.7;display:none"></div>
+        </div>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <button class="analyze-btn" onclick="switchMySpace('universities')">See My University Matches →</button>
+        <button class="btn-ghost" onclick="switchMySpace('achievements')" style="font-size:14px">← Edit Profile</button>
+      </div>
+    </div>
+
+    <!-- PANEL: UNIVERSITY MATCHES -->
+    <div class="myspace-panel" id="ms-universities">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px">
+        <div>
+          <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;margin-bottom:4px">Your University Matches</div>
+          <div style="font-size:13px;color:var(--muted)">Ranked by fit to your portfolio · <span style="color:var(--green)">🟢 Safety</span> &nbsp;·&nbsp; <span style="color:var(--cyan)">🔵 Target</span> &nbsp;·&nbsp; <span style="color:var(--orange)">🟠 Reach</span></div>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <select id="uniFieldFilter" style="background:var(--card);border:1px solid var(--border2);border-radius:8px;padding:8px 14px;color:var(--text);font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer" onchange="filterUniversities()">
+            <option value="all">All Fields</option>
+            <option value="stem">STEM</option>
+            <option value="law">Law & Policy</option>
+            <option value="business">Business</option>
+            <option value="humanities">Humanities</option>
+          </select>
+          <select id="uniRegionFilter" style="background:var(--card);border:1px solid var(--border2);border-radius:8px;padding:8px 14px;color:var(--text);font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer" onchange="filterUniversities()">
+            <option value="all">All Regions</option>
+            <option value="europe">Europe</option>
+            <option value="usa">USA</option>
+            <option value="asia">Asia</option>
+            <option value="uk">United Kingdom</option>
+          </select>
+        </div>
+      </div>
+      <div id="needAnalysisNote" style="padding:24px;text-align:center;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);display:none">
+        <div style="font-size:32px;margin-bottom:12px">🧠</div>
+        <div style="font-size:15px;font-weight:500;margin-bottom:8px">Run portfolio analysis first</div>
+        <div style="font-size:13px;color:var(--muted);margin-bottom:20px">We need to analyze your grades and achievements to match you with the right universities.</div>
+        <button class="analyze-btn" onclick="switchMySpace('grades')" style="margin:0 auto">Start with Grades →</button>
+      </div>
+      <div class="uni-grid" id="uniGrid"></div>
+    </div>
+
+    <!-- PANEL: PROGRESS TRACKER -->
+    <div class="myspace-panel" id="ms-tracker">
+      <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;margin-bottom:6px">Application Progress Tracker</div>
+      <div style="font-size:13px;color:var(--muted);margin-bottom:20px">Check off milestones as you complete them. Each one earns XP and unlocks new opportunities.</div>
+      <div class="tracker-grid" id="trackerGrid"></div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+          <div style="font-size:14px;font-weight:500">Overall Progress</div>
+          <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--orange)" id="trackerXP">0 XP earned</div>
+        </div>
+        <div style="height:8px;background:rgba(255,255,255,0.07);border-radius:4px;overflow:hidden">
+          <div id="trackerProgressBar" style="height:100%;border-radius:4px;background:linear-gradient(90deg,var(--orange),var(--purple));width:0%;transition:width 0.6s cubic-bezier(.4,0,.2,1)"></div>
+        </div>
+        <div style="font-size:11px;color:var(--muted);margin-top:8px" id="trackerProgressLabel">0 of 10 milestones completed</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER CTA -->
+<section class="footer-cta page-section" id="contact">
+  <div class="footer-cta-glow"></div>
+  <div class="container" style="position:relative;z-index:1">
+    <div class="reveal">
+      <h2 class="footer-cta-title font-display">
+        Ready to forge<br>
+        <span class="grad-text">your future?</span>
+      </h2>
+      <p class="footer-cta-sub">Join thousands of students from rural and regional schools who are already navigating toward extraordinary futures.</p>
+      <div class="footer-actions">
+        <button class="btn-primary" onclick="scrollToMySpace()">Start My Journey — Free →</button>
+        <button class="btn-ghost" onclick="showPartnerPanel()">Request School Partnership</button>
+      </div>
+    </div>
+
+    <div class="footer-note">
+      <span>© 2026 Project ER Inc.</span>
+      <span>·</span>
+      <span>Aligned with UN SDG 4 — Quality Education for All</span>
+      <span>·</span>
+      <span>Offline-first · Available in 10 languages</span>
+      <span>·</span>
+      <span>Built for students who deserve better</span>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNER PANEL (school partnership) -->
+<div id="partnerPanel" style="display:none;position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,0.8);backdrop-filter:blur(12px);align-items:center;justify-content:center;padding:20px">
+  <div style="background:var(--deep);border:1px solid var(--border2);border-radius:20px;padding:40px;max-width:440px;width:100%;position:relative">
+    <button onclick="closePartnerPanel()" style="position:absolute;top:16px;right:16px;background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer;font-family:'DM Sans',sans-serif">✕</button>
+    <div style="font-size:28px;margin-bottom:16px">🏫</div>
+    <h3 style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;margin-bottom:8px;letter-spacing:-0.5px">School Partnership Request</h3>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:24px;line-height:1.6">Connect your school or NGO to Project ER. Unlimited student access for $299/year.</p>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <input class="input-field" id="partnerName" type="text" placeholder="Your full name"/>
+      <input class="input-field" id="partnerEmail" type="email" placeholder="Work email address"/>
+      <input class="input-field" id="partnerOrg" type="text" placeholder="School / Organization name"/>
+      <input class="input-field" id="partnerCountry" type="text" placeholder="Country / Region"/>
+      <textarea class="input-field" id="partnerMsg" placeholder="Tell us about your school and students…" style="min-height:80px;resize:vertical"></textarea>
+      <button class="generate-btn" onclick="submitPartner()">Send Partnership Request →</button>
+    </div>
+    <p style="font-size:11px;color:var(--muted2);margin-top:16px;text-align:center">We respond within 48 hours. No commitment required.</p>
+  </div>
+</div>
+
+<!-- MENTOR CHAT PANEL -->
+<div id="mentorChatPanel" style="display:none;position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,0.8);backdrop-filter:blur(12px);align-items:flex-end;justify-content:flex-end;padding:24px">
+  <div style="background:var(--deep);border:1px solid var(--border2);border-radius:20px;width:100%;max-width:400px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,0.6)">
+    <div id="mentorChatHeader" style="padding:16px 20px;background:rgba(168,85,247,0.08);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px">
+      <div id="mentorChatAvatar" style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--orange),var(--purple));display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0">AK</div>
+      <div style="flex:1">
+        <div id="mentorChatName" style="font-weight:600;font-size:14px">Mentor</div>
+        <div id="mentorChatRole" style="font-size:11px;color:var(--muted)">Online</div>
+      </div>
+      <button onclick="closeMentorChat()" style="background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer">✕</button>
+    </div>
+    <div id="mentorChatMessages" style="height:260px;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px">
+      <div style="background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.2);border-radius:12px 12px 12px 2px;padding:12px 14px;font-size:13px;line-height:1.6;max-width:85%" id="mentorGreeting">Hi! I'm really happy to connect with you. What questions do you have about studying abroad, scholarships, or building your portfolio?</div>
+    </div>
+    <div style="padding:12px 16px;border-top:1px solid var(--border);display:flex;gap:8px">
+      <input id="mentorMsgInput" class="input-field" type="text" placeholder="Ask anything…" style="flex:1;padding:10px 14px;font-size:13px" onkeydown="if(event.key==='Enter')sendMentorMsg()"/>
+      <button onclick="sendMentorMsg()" style="background:var(--purple);color:#fff;border:none;border-radius:9px;padding:10px 16px;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;flex-shrink:0">Send</button>
+    </div>
+  </div>
+</div>
+
+<div id="successToast" style="display:none;position:fixed;bottom:32px;right:32px;z-index:3000;background:var(--card);border:1px solid rgba(74,222,128,0.3);border-radius:12px;padding:16px 20px;box-shadow:0 8px 32px rgba(0,0,0,0.4)">
+  <div style="font-size:14px;font-weight:500;margin-bottom:4px" id="toastTitle">✅ Done!</div>
+  <div style="font-size:12px;color:var(--muted)" id="toastMsg">Your message was sent.</div>
+</div>
+
+<script>
+/* ── PARTICLES ── */
+(function(){
+  const colors=['rgba(249,115,22,0.3)','rgba(168,85,247,0.25)','rgba(34,211,238,0.2)'];
+  const container=document.getElementById('particles-container');
+  for(let i=0;i<12;i++){
+    const p=document.createElement('div');
+    p.className='particle';
+    const size=Math.random()*3+1;
+    p.style.cssText=`
+      width:${size}px;height:${size}px;
+      left:${Math.random()*100}%;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      animation-duration:${Math.random()*20+15}s;
+      animation-delay:${Math.random()*10}s;
+    `;
+    container.appendChild(p);
+  }
+})();
+
+/* ── SCROLL REVEAL ── */
+const revealEls=document.querySelectorAll('.reveal');
+const revealObs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target)}
+  });
+},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+revealEls.forEach(el=>revealObs.observe(el));
+
+/* ── ACTIVE NAV ── */
+const navLinks=document.querySelectorAll('.nav-links a');
+const sections=document.querySelectorAll('.page-section[id]');
+const navObs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      navLinks.forEach(a=>a.classList.remove('active'));
+      const match=document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+      if(match)match.classList.add('active');
+    }
+  });
+},{threshold:0.3});
+sections.forEach(s=>navObs.observe(s));
+
+/* ── MOBILE NAV ── */
+function openMobileNav(){document.getElementById('mobileNav').classList.add('open')}
+function closeMobileNav(){document.getElementById('mobileNav').classList.remove('open')}
+
+/* ── COST SIMULATOR ── */
+function updateSim(){
+  const sliders=document.querySelectorAll('.slider');
+  const tuition=parseInt(sliders[0].value);
+  const living=parseInt(sliders[1].value);
+  const duration=parseInt(sliders[2].value);
+  const income=parseInt(sliders[3].value);
+
+  document.getElementById('tuitionVal').textContent='$'+tuition.toLocaleString();
+  document.getElementById('livingVal').textContent='$'+living.toLocaleString();
+  document.getElementById('durationVal').textContent=duration+' year'+(duration>1?'s':'');
+  document.getElementById('incomeVal').textContent='$'+income.toLocaleString();
+
+  const total=tuition*duration+living*12*duration;
+  const workTotal=income*12*duration;
+  const gap=Math.max(0,total-workTotal);
+  const workPct=Math.min(100,Math.round(workTotal/total*100));
+  const gapPct=Math.min(100,Math.round(gap/total*100));
+
+  document.getElementById('totalCost').textContent='$'+total.toLocaleString();
+  document.getElementById('workIncome').textContent='$'+workTotal.toLocaleString();
+  document.getElementById('fundingGap').textContent='$'+gap.toLocaleString();
+  document.getElementById('workBar').style.width=workPct+'%';
+  document.getElementById('gapBar').style.width=gapPct+'%';
+}
+
+/* ── PORTFOLIO GENERATOR (AI-powered) ── */
+async function generatePortfolioAI(){
+  const achievement=document.getElementById('achievementInput').value||'Regional Olympiad achievement';
+  const context=document.getElementById('contextInput').value||'Public school student';
+  const target=document.getElementById('targetInput').value||'international scholarship';
+  const output=document.getElementById('portfolioOutput');
+  const btn=document.querySelector('.generate-btn');
+  btn.textContent='🌟 Generating…';
+  btn.disabled=true;
+  output.style.opacity='0.4';
+  output.innerHTML='<em style="color:var(--muted)">AI is crafting your narrative…</em>';
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:1000,
+        messages:[{role:'user',content:`You are a world-class university admissions consultant. Write a compelling 3-paragraph portfolio narrative for a student applying for ${target}.
+
+Student achievement: ${achievement}
+Student context: ${context}
+
+Write in a professional but authentic tone. Each paragraph should highlight: (1) academic/intellectual strength, (2) leadership and initiative, (3) community impact and character. Make it specific, powerful, and human. No bullet points — flowing prose only. Keep total under 250 words.`}]
+      })
+    });
+    const data = await res.json();
+    const text = data.content?.[0]?.text || 'Could not generate narrative. Please try again.';
+    output.innerHTML = text.replace(/\n\n/g,'<br><br>').replace(/\n/g,'<br>');
+  } catch(e) {
+    // Fallback to local generation
+    output.innerHTML = `Demonstrated exceptional initiative by achieving ${achievement} — accomplished through entirely self-directed effort without institutional advantages available to peers in well-resourced environments. This reflects not only strong intellectual capability but remarkable resilience and intrinsic motivation.<br><br>The ability to identify opportunities, build skills independently, and perform at a competitive level despite systemic barriers is precisely the leadership quality that thriving university communities seek. This student does not wait to be given opportunity — they create it.<br><br>${context ? 'Coming from ' + context + ', this' : 'This'} student's goal of ${target} is backed by demonstrated capacity for sustained excellence. Their profile signals someone who will contribute meaningfully to campus life and to the world beyond it.`;
+  }
+
+  output.style.opacity='1';
+  btn.textContent='🌟 Generate again';
+  btn.disabled=false;
+}
+
+/* ── PARTNER PANEL ── */
+function showPartnerPanel(){
+  const p=document.getElementById('partnerPanel');
+  p.style.display='flex';
+  document.body.style.overflow='hidden';
+}
+function closePartnerPanel(){
+  document.getElementById('partnerPanel').style.display='none';
+  document.body.style.overflow='';
+}
+function submitPartner(){
+  closePartnerPanel();
+  showToast('🏫 Request sent!','We\'ll contact you within 48 hours. Thank you!');
+}
+document.getElementById('partnerPanel').addEventListener('click',function(e){if(e.target===this)closePartnerPanel();});
+
+/* ── MENTOR CHAT ── */
+const mentorReplies = {
+  'Aigerim Kassymova': [
+    "The Bolashak scholarship was life-changing for me — if you're from Kazakhstan, definitely apply. The key is showing community impact in your essay.",
+    "For ETH Zurich, your maths and sciences grades matter most. But they also care about your personal statement a lot. Be genuine — they can tell when it's fake.",
+    "I highly recommend joining a science club or starting one if there isn't one. It shows initiative and gives you something concrete to write about.",
+    "Don't be afraid to email professors directly at universities you're interested in. I did this and it helped my application stand out."
+  ],
+  'Malik Traoré': [
+    "Start building projects on GitHub right now — even simple ones. A real portfolio of code matters more than any certificate.",
+    "freeCodeCamp and The Odin Project are both free and genuinely good. I completed them before getting into my bootcamp.",
+    "Remote work has completely changed the equation. You don't need to be in Silicon Valley. Start networking on LinkedIn even before you graduate.",
+    "The biggest mistake students make is waiting until they're 'ready.' Build something imperfect and ship it. Learn by doing."
+  ],
+  'Priya Patel': [
+    "Medicine abroad is competitive but very achievable. I'd suggest looking at universities in Poland and Czech Republic — excellent quality, much lower fees than the UK.",
+    "UCAT or BMAT preparation takes months — start early. Khan Academy has free resources that genuinely help.",
+    "Having a 'Why Medicine' story that connects to your rural background is a huge advantage. Admissions teams love authentic motivation.",
+    "Shadowing doctors or volunteering at a clinic — even a local one — makes your application stand out. Ask your local hospital if they accept student observers."
+  ]
+};
+let currentMentor = '';
+let mentorMsgCount = 0;
+
+function openMentorChat(name, role, tags) {
+  currentMentor = name;
+  mentorMsgCount = 0;
+  const initials = name.split(' ').map(n=>n[0]).join('').slice(0,2);
+  document.getElementById('mentorChatAvatar').textContent = initials;
+  document.getElementById('mentorChatName').textContent = name;
+  document.getElementById('mentorChatRole').textContent = role + ' · ' + tags;
+  document.getElementById('mentorGreeting').textContent = `Hi! I'm ${name.split(' ')[0]}. I'm really happy to connect with you. What questions do you have about studying abroad, scholarships, or ${tags.split('·')[0].trim()}?`;
+  const msgs = document.getElementById('mentorChatMessages');
+  // Remove any prior messages beyond greeting
+  while(msgs.children.length > 1) msgs.removeChild(msgs.lastChild);
+  const panel = document.getElementById('mentorChatPanel');
+  panel.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  document.getElementById('mentorMsgInput').focus();
+  trackerDone.add('t7');
+}
+function closeMentorChat(){
+  document.getElementById('mentorChatPanel').style.display='none';
+  document.body.style.overflow='';
+}
+function sendMentorMsg(){
+  const input = document.getElementById('mentorMsgInput');
+  const msgs = document.getElementById('mentorChatMessages');
+  const text = input.value.trim();
+  if(!text) return;
+
+  // User message
+  const userBubble = document.createElement('div');
+  userBubble.style.cssText='background:rgba(249,115,22,0.12);border:1px solid rgba(249,115,22,0.2);border-radius:12px 12px 2px 12px;padding:12px 14px;font-size:13px;line-height:1.6;max-width:85%;align-self:flex-end;margin-left:auto';
+  userBubble.textContent = text;
+  msgs.appendChild(userBubble);
+  input.value='';
+  msgs.scrollTop = msgs.scrollHeight;
+
+  // Mentor typing indicator
+  const typing = document.createElement('div');
+  typing.style.cssText='background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.2);border-radius:12px 12px 12px 2px;padding:12px 14px;font-size:13px;color:var(--muted);max-width:85%';
+  typing.textContent = '…';
+  msgs.appendChild(typing);
+  msgs.scrollTop = msgs.scrollHeight;
+
+  setTimeout(async () => {
+    let reply = '';
+    const replies = mentorReplies[currentMentor] || [];
+    try {
+      const firstName = currentMentor.split(' ')[0];
+      const res = await fetch('https://api.anthropic.com/v1/messages',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({
+          model:'claude-sonnet-4-20250514',
+          max_tokens:200,
+          messages:[{role:'user',content:`You are ${currentMentor}, a real mentor on Project ER platform. You are a student/professional who succeeded despite coming from a disadvantaged background. Respond to this student message in 2-3 sentences, warmly and practically. Be specific and encouraging. Do not use formal language — talk like a real person. Message: "${text}"`}]
+        })
+      });
+      const data = await res.json();
+      reply = data.content?.[0]?.text || replies[mentorMsgCount % replies.length];
+    } catch(e) {
+      reply = replies[mentorMsgCount % replies.length] || "That's a great question. Keep pushing forward — every step counts.";
+    }
+    mentorMsgCount++;
+    typing.style.color='var(--text)';
+    typing.textContent = reply;
+    msgs.scrollTop = msgs.scrollHeight;
+  }, 1000 + Math.random() * 600);
+}
+
+/* ── GRANT ROW EXPAND (highlight on click) ── */
+function expandGrantList(row){
+  // Toggle highlight
+  const isActive = row.dataset.active === '1';
+  document.querySelectorAll('.grant-row[data-active="1"]').forEach(r=>{
+    r.dataset.active='0';
+    r.style.background='';
+    r.style.borderLeft='';
+  });
+  if(!isActive){
+    row.dataset.active='1';
+    row.style.background='rgba(168,85,247,0.07)';
+    row.style.borderLeft='3px solid var(--purple)';
+    // Show save toast
+    showToast('📌 Scholarship noted!','Check the ✦ My Space tab to track your applications.');
+  }
+}
+
+/* ── SCROLL TO MY SPACE ── */
+function scrollToMySpace(career){
+  document.getElementById('my-space').scrollIntoView({behavior:'smooth'});
+  if(career){
+    setTimeout(()=>{
+      switchMySpace('grades');
+      const note = document.querySelector('#ms-grades .myspace-hero > div:first-child');
+      if(note) note.textContent = `Building your ${career} roadmap — start by entering your grades below`;
+    },600);
+  }
+}
+
+/* ── GAMIFICATION earnXP ── */
+function earnXP(card, action, xp, trackerId){
+  if(card.dataset.claimed==='1') return;
+  card.dataset.claimed='1';
+  card.style.borderColor='rgba(74,222,128,0.4)';
+  card.style.background='rgba(74,222,128,0.05)';
+  card.querySelector('div:last-child').textContent='✓ Completed! +'+xp+' XP earned';
+  card.querySelector('div:last-child').style.color='var(--green)';
+  // Mark in tracker
+  if(trackerId && !trackerDone.has(trackerId)){
+    trackerDone.add(trackerId);
+  }
+  showToast('🎉 +'+xp+' XP earned!','Milestone unlocked: '+action+'. Check My Space tracker!');
+}
+
+/* ── UPDATE GRANT RADAR TITLE when grades are entered ── */
+function updateGrantRadar(){
+  const title = document.getElementById('grantRadarTitle');
+  if(!title) return;
+  const gradeVals = ['g-math','g-physics','g-biology','g-chemistry','g-cs'].map(id=>parseFloat(document.getElementById(id)?.value)).filter(v=>!isNaN(v));
+  if(gradeVals.length){
+    const avg = (gradeVals.reduce((a,b)=>a+b,0)/gradeVals.length).toFixed(0);
+    title.textContent = `Scholarships matched for you — Avg ${avg}% · 12 results found`;
+  }
+}
+
+/* ── SHOW TOAST ── */
+function showToast(title, msg){
+  document.getElementById('toastTitle').textContent = title;
+  document.getElementById('toastMsg').textContent = msg;
+  const toast=document.getElementById('successToast');
+  toast.style.display='block';
+  setTimeout(()=>{toast.style.display='none'},4000);
+}
+
+/* ── LEGACY openModal / closeModal / submitModal kept as no-ops for safety ── */
+function openModal(){}
+function closeModal(){}
+function submitModal(){}
+
+
+
+/* ── SMOOTH NAV BACKGROUND on scroll ── */
+window.addEventListener('scroll',()=>{
+  const nav=document.getElementById('mainNav');
+  if(window.scrollY>60){
+    nav.style.background='rgba(10,10,15,0.97)';
+  } else {
+    nav.style.background='rgba(10,10,15,0.85)';
+  }
+});
+
+/* ── CAREER TABS ── */
+function switchCareer(id){
+  document.querySelectorAll('.career-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.career-panel').forEach(p=>p.classList.remove('active'));
+  event.target.classList.add('active');
+  const panel=document.getElementById('panel-'+id);
+  if(panel){panel.classList.add('active');}
+}
+
+/* ── MY SPACE ── */
+
+// --- Tab switching ---
+function switchMySpace(tab) {
+  document.querySelectorAll('.myspace-tab').forEach((t,i) => {
+    const tabs = ['grades','achievements','analysis','universities','tracker'];
+    t.classList.toggle('active', tabs[i] === tab);
+  });
+  document.querySelectorAll('.myspace-panel').forEach(p => p.classList.remove('active'));
+  const panel = document.getElementById('ms-' + tab);
+  if (panel) panel.classList.add('active');
+  if (tab === 'universities') { renderUniversities(); trackerDone.add('t4'); }
+  if (tab === 'tracker') renderTracker();
+  if (tab === 'analysis') trackerDone.add('t3');
+  // Update grant radar when grades entered
+  updateGrantRadar();
+}
+
+// --- Grade summary ---
+const subjectNames = {
+  'g-math':'Mathematics','g-physics':'Physics','g-biology':'Biology',
+  'g-chemistry':'Chemistry','g-english':'English','g-history':'History',
+  'g-cs':'Computer Science','g-arts':'Arts'
+};
+function updateGradeSummary() {
+  const vals = Object.keys(subjectNames).map(id => ({id, name: subjectNames[id], v: parseFloat(document.getElementById(id).value)})).filter(x => !isNaN(x.v));
+  if (!vals.length) { document.getElementById('gradeSummaryBar').style.display = 'none'; return; }
+  document.getElementById('gradeSummaryBar').style.display = 'block';
+  const avg = vals.reduce((s,x) => s + x.v, 0) / vals.length;
+  document.getElementById('gradeAvg').textContent = avg.toFixed(1) + '%';
+  const best = vals.reduce((a,b) => a.v > b.v ? a : b);
+  document.getElementById('strongestSubj').textContent = best.name;
+  const tier = avg >= 90 ? 'Elite (Top 5%)' : avg >= 80 ? 'Strong (Top 20%)' : avg >= 70 ? 'Good (Top 35%)' : avg >= 60 ? 'Average' : 'Developing';
+  document.getElementById('gradesTier').textContent = tier;
+  // auto-mark tracker milestone
+  if(vals.length >= 3) trackerDone.add('t1');
+  updateGrantRadar();
+}
+
+// --- Achievement emojis ---
+const emojiSets = [['🏅','🥇','🥈','🥉','🏆','🎖️'],['👥','🗣️','🤝','👨‍💼','🌐'],['🤝','❤️','🌱','🕊️','🌍'],['💻','🔬','🧬','📊','⚗️'],['🎨','🎭','🎵','📸','✏️']];
+function cycleEmoji(btn) {
+  const all = emojiSets.flat();
+  const cur = all.indexOf(btn.textContent);
+  btn.textContent = all[(cur + 1) % all.length];
+}
+function addAchievement() {
+  const row = document.createElement('div');
+  row.className = 'achievement-row';
+  const types = ['Academic','Leadership','Community','Technical','Creative'];
+  const type = types[Math.floor(Math.random() * types.length)];
+  row.innerHTML = `<button class="achievement-emoji-picker" onclick="cycleEmoji(this)" title="Click to change">⭐</button>
+    <input class="achievement-text" type="text" placeholder="Describe your achievement…"/>
+    <span class="achievement-type">${type}</span>
+    <button onclick="this.parentElement.remove();checkAchievementCount()" style="background:none;border:none;color:var(--muted2);font-size:18px;cursor:pointer;padding:0 4px;flex-shrink:0">✕</button>`;
+  document.getElementById('achievementList').appendChild(row);
+  row.querySelector('input').focus();
+  checkAchievementCount();
+}
+function checkAchievementCount(){
+  const filled = Array.from(document.querySelectorAll('#achievementList .achievement-row input.achievement-text')).filter(r=>r.value.trim().length>3).length;
+  const total = document.querySelectorAll('#achievementList .achievement-row').length;
+  if(total >= 3) trackerDone.add('t2');
+}
+
+// --- Portfolio Analysis ---
+function runPortfolioAnalysis() {
+  const btn = document.getElementById('analyzeBtn');
+  const icon = document.getElementById('analyzeBtnIcon');
+  const txt = document.getElementById('analyzeBtnText');
+  btn.disabled = true;
+  icon.textContent = '⏳';
+  txt.textContent = 'Analyzing…';
+
+  setTimeout(() => {
+    // Compute grades score
+    const gradeFields = ['g-math','g-physics','g-biology','g-chemistry','g-english','g-history','g-cs','g-arts'];
+    const gradeVals = gradeFields.map(id => parseFloat(document.getElementById(id).value)).filter(v => !isNaN(v));
+    const avgGrade = gradeVals.length ? gradeVals.reduce((a,b) => a+b,0)/gradeVals.length : 65;
+    const gradesScore = Math.round(Math.min(100, (avgGrade / 100) * 100));
+
+    // Achievements
+    const rows = document.querySelectorAll('#achievementList .achievement-row input.achievement-text');
+    const filled = Array.from(rows).filter(r => r.value.trim().length > 5).length;
+    const types = Array.from(document.querySelectorAll('#achievementList .achievement-type')).map(s => s.textContent);
+    const achScore = Math.min(100, filled * 22 + (filled > 2 ? 15 : 0));
+
+    // Leadership & community
+    const hasLeadership = types.includes('Leadership');
+    const hasCommunity = types.includes('Community');
+    const leadScore = hasLeadership ? Math.min(100, 60 + filled * 8) : Math.min(40, filled * 10);
+    const commScore = hasCommunity ? Math.min(100, 55 + filled * 9) : Math.min(35, filled * 8);
+
+    // Diversity
+    const uniqueTypes = new Set(types).size;
+    const divScore = Math.min(100, uniqueTypes * 20 + (gradeVals.length > 4 ? 15 : 0));
+
+    // Total (weighted)
+    const total = Math.round(gradesScore * 0.35 + achScore * 0.25 + leadScore * 0.2 + commScore * 0.1 + divScore * 0.1);
+
+    // Animate
+    animateScore(total, gradesScore, achScore, leadScore, commScore, divScore);
+    window._portfolioScore = total;
+    window._portfolioData = { gradesScore, achScore, leadScore, commScore, divScore, avgGrade };
+    switchMySpace('analysis');
+    btn.disabled = false;
+    icon.textContent = '🧠';
+    txt.textContent = 'Re-analyze Portfolio';
+  }, 1600);
+}
+
+function animateScore(total, g, a, l, c, d) {
+  const tier = total >= 85 ? ['🌟 Exceptional','You have a world-class profile. Target elite global universities with confidence. Your combination of academics and activities places you in the top 5% of applicants internationally.'] :
+               total >= 70 ? ['⚡ Strong','Your profile is competitive for top regional and international universities. A few more achievements will unlock elite-tier scholarships.'] :
+               total >= 55 ? ['📈 Developing','You have a solid foundation. Adding 1–2 more distinct achievements would significantly strengthen your applications.'] :
+               ['🌱 Building','Early stages — that\'s perfectly fine. Focus on excelling in 1–2 subjects and joining one club or competition. Small steps build big portfolios.'];
+
+  document.getElementById('portfolioTierLabel').textContent = tier[0];
+  document.getElementById('portfolioTierDesc').textContent = '';
+  document.getElementById('portfolioScoreNum').textContent = '0';
+  document.getElementById('analysisNarrative').style.display = 'block';
+  document.getElementById('analysisNarrative').textContent = tier[1];
+
+  // ring animation
+  const ring = document.getElementById('scoreRingFill');
+  const offset = 376 - (376 * total / 100);
+  setTimeout(() => {
+    ring.style.strokeDashoffset = offset;
+    document.getElementById('portfolioScoreNum').textContent = total;
+    [['bar-grades','val-grades',g],['bar-ach','val-ach',a],['bar-lead','val-lead',l],['bar-comm','val-comm',c],['bar-div','val-div',d]].forEach(([barId, valId, val]) => {
+      document.getElementById(barId).style.width = val + '%';
+      document.getElementById(valId).textContent = val;
+    });
+  }, 200);
+}
+
+// --- University Data ---
+const uniDatabase = [
+  {name:'ETH Zurich',flag:'🇨🇭',program:'BSc Computer Science / Engineering',region:'europe',field:'stem',tier:'reach',match:92,tuition:'Free (CHF 730/sem)',scholarship:'Excellence Scholarship available',rank:'#7 World',acceptance:'16%'},
+  {name:'TU Delft',flag:'🇳🇱',program:'BSc Applied Sciences',region:'europe',field:'stem',tier:'target',match:85,tuition:'€2,209/year (EU)',scholarship:'Holland Scholarship €5,000',rank:'#57 World',acceptance:'45%'},
+  {name:'University of Warsaw',flag:'🇵🇱',program:'BSc Mathematics / Computer Science',region:'europe',field:'stem',tier:'safety',match:78,tuition:'Free for EU / low fees',scholarship:'Polish Gov. Scholarship',rank:'Top 400',acceptance:'65%'},
+  {name:'Nazarbayev University',flag:'🇰🇿',program:'BSc Engineering / Sciences',region:'asia',field:'stem',tier:'safety',match:90,tuition:'Fully funded via Bolashak',scholarship:'Bolashak National Grant',rank:'Top 5 Central Asia',acceptance:'35%'},
+  {name:'University of Edinburgh',flag:'🏴󠁧󠁢󠁳󠁣󠁴󠁿',program:'BSc Computer Science',region:'uk',field:'stem',tier:'reach',match:82,tuition:'£26,500/year',scholarship:'Global Scholarships up to £10K',rank:'#27 World',acceptance:'28%'},
+  {name:'Leiden University',flag:'🇳🇱',program:'BSc Pre-Law / International Studies',region:'europe',field:'law',tier:'target',match:83,tuition:'€2,209/year',scholarship:'Leiden Excellence Scholarship',rank:'Top 100',acceptance:'55%'},
+  {name:'LSE',flag:'🇬🇧',program:'BSc Law / International Development',region:'uk',field:'law',tier:'reach',match:76,tuition:'£22,000/year',scholarship:'LSE Financial Support Bursary',rank:'#45 World',acceptance:'15%'},
+  {name:'WU Vienna',flag:'🇦🇹',program:'BSc Business Administration',region:'europe',field:'business',tier:'target',match:87,tuition:'€726/semester',scholarship:'Merit-based grant',rank:'Top 60 Business',acceptance:'50%'},
+  {name:'University of Groningen',flag:'🇳🇱',program:'BA Liberal Arts & Sciences',region:'europe',field:'humanities',tier:'safety',match:80,tuition:'€2,209/year',scholarship:'Excellence Scholarship',rank:'Top 150',acceptance:'70%'},
+  {name:'NUS Singapore',flag:'🇸🇬',program:'BSc Life Sciences / CS',region:'asia',field:'stem',tier:'reach',match:88,tuition:'SGD 8,800/year',scholarship:'ASEAN Scholarship',rank:'#11 World',acceptance:'18%'},
+  {name:'Charles University Prague',flag:'🇨🇿',program:'BSc Medicine / Natural Sciences',region:'europe',field:'stem',tier:'target',match:81,tuition:'Free in Czech language',scholarship:'Czech Gov. Scholarship',rank:'Top 200',acceptance:'40%'},
+  {name:'Warwick',flag:'🇬🇧',program:'BSc Business / Economics',region:'uk',field:'business',tier:'reach',match:79,tuition:'£24,000/year',scholarship:'Warwick Scholarship £2K–£6K',rank:'#67 World',acceptance:'25%'},
+];
+
+let _filteredUnis = [];
+function renderUniversities() {
+  const score = window._portfolioScore || 0;
+  const grid = document.getElementById('uniGrid');
+  const noteEl = document.getElementById('needAnalysisNote');
+
+  if (!score) {
+    noteEl.style.display = 'block';
+    grid.innerHTML = '';
+    return;
+  }
+  noteEl.style.display = 'none';
+  filterUniversities();
+}
+
+function filterUniversities() {
+  const score = window._portfolioScore || 0;
+  const field = document.getElementById('uniFieldFilter').value;
+  const region = document.getElementById('uniRegionFilter').value;
+  const grid = document.getElementById('uniGrid');
+
+  let unis = uniDatabase.filter(u => {
+    if (field !== 'all' && u.field !== field) return false;
+    if (region !== 'all' && u.region !== region) return false;
+    return true;
+  });
+
+  // Adjust match score based on portfolio
+  unis = unis.map(u => ({...u, adjMatch: Math.round(Math.min(99, u.match * (0.6 + score / 250)))}));
+  unis.sort((a,b) => b.adjMatch - a.adjMatch);
+
+  if (!unis.length) { grid.innerHTML = '<div style="padding:24px;color:var(--muted);text-align:center">No universities match this filter.</div>'; return; }
+
+  grid.innerHTML = unis.map(u => {
+    const matchColor = u.tier === 'reach' ? 'var(--orange)' : u.tier === 'target' ? 'var(--cyan)' : 'var(--green)';
+    return `<div class="uni-card ${u.tier}" onclick="this.style.borderColor='${matchColor}'">
+      <div class="uni-card-header">
+        <div class="uni-flag">${u.flag}</div>
+        <div style="flex:1">
+          <div class="uni-name">${u.name}</div>
+          <div class="uni-program">${u.program}</div>
+        </div>
+        <span class="uni-badge ${u.tier}">${u.tier.charAt(0).toUpperCase() + u.tier.slice(1)}</span>
+      </div>
+      <div class="uni-meta">
+        <span class="uni-meta-chip">📊 ${u.rank}</span>
+        <span class="uni-meta-chip">🎯 ${u.acceptance} acceptance</span>
+        <span class="uni-meta-chip">💰 ${u.tuition}</span>
+      </div>
+      <div class="uni-match">
+        <div style="font-size:11px;color:var(--muted);flex-shrink:0">Profile Match</div>
+        <div class="uni-match-bar"><div class="uni-match-fill" style="width:${u.adjMatch}%;background:linear-gradient(90deg,${matchColor},${matchColor}88)"></div></div>
+        <div class="uni-match-pct" style="color:${matchColor}">${u.adjMatch}%</div>
+      </div>
+      <div class="uni-scholarship">🎓 ${u.scholarship}</div>
+    </div>`;
+  }).join('');
+}
+
+// --- Progress Tracker ---
+const trackerItems = [
+  {id:'t1',icon:'📊',name:'Enter your grades',xp:50},
+  {id:'t2',icon:'🏆',name:'Add 3+ achievements',xp:100},
+  {id:'t3',icon:'🧠',name:'Run portfolio analysis',xp:150},
+  {id:'t4',icon:'🎓',name:'View university matches',xp:100},
+  {id:'t5',icon:'💌',name:'Research top 3 scholarships',xp:200},
+  {id:'t6',icon:'📝',name:'Draft your personal statement',xp:250},
+  {id:'t7',icon:'🤝',name:'Connect with a mentor',xp:200},
+  {id:'t8',icon:'📋',name:'Send first application',xp:300},
+  {id:'t9',icon:'🌐',name:'Join the community forum',xp:75},
+  {id:'t10',icon:'🎖️',name:'Earn your first badge',xp:150},
+];
+const trackerDone = new Set();
+
+function renderTracker() {
+  const grid = document.getElementById('trackerGrid');
+  grid.innerHTML = trackerItems.map(item => `
+    <div class="tracker-card${trackerDone.has(item.id) ? ' done' : ''}" id="tc-${item.id}" onclick="toggleTracker('${item.id}')">
+      <div class="tracker-icon">${item.icon}</div>
+      <div>
+        <div class="tracker-name">${item.name}</div>
+        <div class="tracker-xp">+${item.xp} XP</div>
+      </div>
+      <div class="tracker-check">${trackerDone.has(item.id) ? '✓' : ''}</div>
+    </div>`).join('');
+  updateTrackerProgress();
+}
+
+function toggleTracker(id) {
+  if (trackerDone.has(id)) trackerDone.delete(id); else trackerDone.add(id);
+  const card = document.getElementById('tc-' + id);
+  const item = trackerItems.find(t => t.id === id);
+  card.classList.toggle('done', trackerDone.has(id));
+  card.querySelector('.tracker-check').textContent = trackerDone.has(id) ? '✓' : '';
+  updateTrackerProgress();
+}
+
+function updateTrackerProgress() {
+  const total = trackerItems.reduce((s,t) => s + (trackerDone.has(t.id) ? t.xp : 0), 0);
+  const maxXP = trackerItems.reduce((s,t) => s + t.xp, 0);
+  const pct = Math.round(total / maxXP * 100);
+  document.getElementById('trackerXP').textContent = total + ' XP earned';
+  document.getElementById('trackerProgressBar').style.width = pct + '%';
+  document.getElementById('trackerProgressLabel').textContent = `${trackerDone.size} of ${trackerItems.length} milestones completed`;
+}
+
+/* ── CAREER QUIZ ── */
+const quizAnswers={};
+const careerMap={
+  science:{health:'biomedical',tech:'data',equity:'education',growth:'business'},
+  people:{health:'education',tech:'education',equity:'law',growth:'business'},
+  build:{health:'biomedical',tech:'software',equity:'education',growth:'business'},
+  advocate:{health:'law',tech:'law',equity:'law',growth:'law'},
+};
+const careerResults={
+  biomedical:{emoji:'🧬',name:'Biomedical Engineer',sub:"Your analytical mind and desire for health impact make Biomedical Engineering a powerful fit. You're built for a field that saves lives through science."},
+  software:{emoji:'💻',name:'Software Engineer',sub:"Your builder's instinct and love of innovation point clearly toward Software Engineering — the field with the highest global reach and earning ceiling."},
+  data:{emoji:'📊',name:'Data Scientist',sub:"Your analytical depth and desire to drive decisions through insight make Data Science a natural fit — one of the most in-demand fields of our era."},
+  law:{emoji:'⚖️',name:'International Lawyer',sub:"Your passion for justice, equity, and making the case for what's right aligns powerfully with a career in law and international policy."},
+  education:{emoji:'🎓',name:'Education Leader',sub:"Your empathy, communication strength, and desire to multiply human potential make you a natural fit for education leadership — one of the world's most impactful careers."},
+  business:{emoji:'📈',name:'Entrepreneur / Business Leader',sub:"Your versatility, leadership drive, and desire to create economic value point straight toward entrepreneurship and business leadership."},
+};
+function selectQuiz(q,answer){
+  quizAnswers[q]=answer;
+  const opts=document.querySelectorAll(`#q${q} .quiz-option`);
+  opts.forEach(o=>o.classList.remove('selected'));
+  event.target.closest('.quiz-option').classList.add('selected');
+  setTimeout(()=>{
+    if(q<3){
+      document.getElementById('q'+q).style.display='none';
+      document.getElementById('q'+(q+1)).style.display='block';
+      for(let i=1;i<=3;i++){
+        const el=document.getElementById('qp'+i);
+        if(i<q+1)el.className='quiz-progress-step done';
+        else if(i===q+1)el.className='quiz-progress-step current';
+        else el.className='quiz-progress-step';
+      }
+    } else {
+      // show result
+      document.getElementById('q3').style.display='none';
+      document.querySelectorAll('.quiz-progress-step').forEach(s=>s.className='quiz-progress-step done');
+      const q1=quizAnswers[1]||'science';
+      const q2=quizAnswers[2]||'health';
+      const career=careerMap[q1]?careerMap[q1][q2]||'biomedical':'biomedical';
+      const res=careerResults[career];
+      document.getElementById('resultEmoji').textContent=res.emoji;
+      document.getElementById('resultCareer').textContent='Your Top Match: '+res.name;
+      document.getElementById('resultSub').textContent=res.sub;
+      const resultEl=document.getElementById('quizResult');
+      resultEl.classList.add('show');
+    }
+  },350);
+}
+</script>
+</body>
+</html>
